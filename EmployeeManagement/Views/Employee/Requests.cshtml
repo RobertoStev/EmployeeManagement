@@ -1,0 +1,124 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Requests";
+}
+
+
+    <!-- Leave Requests -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Leave Requests</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.LeaveRequests != null && Model.LeaveRequests.Any())
+            {
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var leave in Model.LeaveRequests)
+                        {
+                            <tr>
+                                <td>@leave.StartDate.ToShortDateString()</td>
+                                <td>@leave.EndDate.ToShortDateString()</td>
+                                <td>@leave.LeaveType</td>
+                                <td>
+                                    @if (leave.LeaveStatus == EmployeeManagement.Enums.EnumTypes.LeaveStatus.Approved)
+                                    {
+                                        <span class="badge bg-success">Approved</span>
+                                    }
+                                    else if (leave.LeaveStatus == EmployeeManagement.Enums.EnumTypes.LeaveStatus.Rejected)
+                                    {
+                                        <span class="badge bg-danger">Rejected</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Pending</span>
+                                    }
+                                </td>
+                                <td>@leave.Comment</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No leave requests found.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Sick Leaves -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Sick Leaves</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.SickLeaves != null && Model.SickLeaves.Any())
+            {
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Reason</th>
+                            <th>Medical Report</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var sickLeave in Model.SickLeaves)
+                        {
+                            <tr>
+                                <td>@sickLeave.StartDate.ToShortDateString()</td>
+                                <td>@sickLeave.EndDate.ToShortDateString()</td>
+                                <td>@sickLeave.Reason</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(sickLeave.MedicalReportPath))
+                                    {
+                                        <a href="@Url.Content(sickLeave.MedicalReportPath)" target="_blank">View Report</a>
+                                    }
+                                    else
+                                    {
+                                        <span>No Report</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (sickLeave.LeavStatus == EmployeeManagement.Enums.EnumTypes.LeaveStatus.Approved)
+                                    {
+                                        <span class="badge bg-success">Approved</span>
+                                    }
+                                    else if (sickLeave.LeavStatus == EmployeeManagement.Enums.EnumTypes.LeaveStatus.Rejected)
+                                    {
+                                        <span class="badge bg-danger">Rejected</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Pending</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No sick leaves found.</p>
+            }
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="EmployeeInfo" class="btn btn-secondary">Back</a>
+    </div>
+</div>

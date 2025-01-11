@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EmployeeManagement.DTOs.EmployeeGetDTO>
+@{
+}
+
+<h2>List of all Employees</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>AnnualLeaveDaysRemaining</th>
+            <th>BonusLeaveDaysRemaining</th>
+            <th>Created At</th>
+            @if (User.IsInRole("Hr"))
+            {
+                <th>Actions</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var employee in Model)
+        {
+            <tr>
+                <td>@employee.EmployeeId</td>
+                <td>@employee.Name</td>
+                <td>@employee.Email</td>
+                <td>@employee.AnnualLeaveDaysRemaining</td>
+                <td>@employee.BonusLeaveDaysRemaining</td>
+                <td>@employee.CreatedAt</td>
+                <td>
+                    @if (User.IsInRole("Hr"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger">Delete</a>
+                        <a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-warning">Details</a>
+                        <a asp-action="ManageDays" asp-route-id="@employee.EmployeeId" class="btn btn-success">Manage Days</a>
+                    }                  
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

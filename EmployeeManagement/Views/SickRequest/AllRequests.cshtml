@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SickLeave>
+@using static EmployeeManagement.Enums.EnumTypes
+@{
+}
+
+<h2>All current Sick Leaves</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name of the Employee</th>
+            <th>Email</th>
+            <th>Annual Leave Days Remaining</th>
+            <th>Bonus Leave Days Remaining</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>Reason</th>
+            <th>MedicalReportPath</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Employee.Name</td>
+                <td>@request.Employee.Email</td>
+                <td>@request.Employee.AnnualLeaveDaysRemaining</td>
+                <td>@request.Employee.BonusLeaveDaysRemaining</td>
+                <td>@request.StartDate</td>
+                <td>@request.EndDate</td>
+                <td>@request.Reason</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(request.MedicalReportPath))
+                    {
+                        <a href="@Url.Content($"~/uploads/{System.IO.Path.GetFileName(request.MedicalReportPath)}")" target="_blank">Download</a>
+                    }
+                </td>
+                <td class="@(request.LeavStatus == LeaveStatus.Approved? "bg-primary text-white": request.LeavStatus == LeaveStatus.Rejected? "bg-danger text-white": request.LeavStatus == LeaveStatus.Pending? "bg-secondary text-white": "")">
+                    @request.LeavStatus
+                </td>
+                <td>
+                    @if (User.IsInRole("Hr"))
+                    {
+                        <a asp-action="Approve" asp-route-id="@request.SickLeaveId" class="btn btn-primary">Approve</a>
+                        <a asp-action="Decline" asp-route-id="@request.SickLeaveId" class="btn btn-danger">Decline</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,63 @@
+﻿@model EmployeeManagement.DTOs.EmployeeGetDTO
+
+@{
+    ViewData["Title"] = "Index2";
+}
+
+<h1>My Informations: </h1>
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @ViewData["Message"]
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <label asp-for="Name"></label>
+                </th>
+                <th>
+                    <label asp-for="Email"></label>
+                </th>
+                <th>
+                    <label asp-for="AnnualLeaveDaysRemaining"></label>
+                </th>
+                <th>
+                    <label asp-for="BonusLeaveDaysRemaining"></label>
+                </th>
+                <th>
+                    <label asp-for="CreatedAt"></label>
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                   @Model.Name
+                </td>
+                <td>
+                    @Model.Email
+                </td>
+                <td>
+                    @Model.AnnualLeaveDaysRemaining
+                </td>
+                <td>
+                    @Model.BonusLeaveDaysRemaining
+                </td>
+                <td>
+                    @Model.CreatedAt
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@Model.EmployeeId" class="btn btn-primary">See details</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

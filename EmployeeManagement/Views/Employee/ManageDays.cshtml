@@ -1,0 +1,29 @@
+﻿@model EmployeeManagement.DTOs.EmployeeManageDaysDTO
+@{
+}
+
+<h2>Manage Leave Days for Employee with Id = @Model.EmployeeId</h2>
+<h2>Use - infront of the number to deduct days</h2>
+
+<form asp-action="ManageDays" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="EmployeeId" />
+
+    <div class="from-group">
+        <label asp-for="AnnualLeaveDaysRemaining" class="control-label">Промени годишни слободни денови: </label>
+        <input asp-for="AnnualLeaveDaysRemaining" class="form-control" />
+        <span asp-validation-for="AnnualLeaveDaysRemaining" class="text-danger"></span>
+    </div>
+    <div class="from-group">
+        <label asp-for="BonusLeaveDaysRemaining" class="control-label">Промени бонус слободни денови:</label>
+        <input asp-for="BonusLeaveDaysRemaining" class="form-control" />
+        <span asp-validation-for="BonusLeaveDaysRemaining" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-primary" />
+    </div>
+</form>
+
+<a asp-action="Index" class="btn btn-success">Go Back To Employees</a>

@@ -1,0 +1,56 @@
+﻿@using static EmployeeManagement.Enums.EnumTypes
+@model IEnumerable<LeaveRequest>
+@{
+}
+
+<h2>List of LeaveRequests and Employees</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name of the Employee</th>
+            <th>Email</th>
+            <th>Annual Leave Days Remaining</th>
+            <th>Bonus Leave Days Remaining</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>Comments</th>
+            <th>LeaveType</th>
+            <th>LeaveStatus</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.Employee.Name</td>
+                <td>@request.Employee.Email</td>
+                <td>@request.Employee.AnnualLeaveDaysRemaining</td>
+                <td>@request.Employee.BonusLeaveDaysRemaining</td>
+                <td>@request.StartDate</td>
+                <td>@request.EndDate</td>
+                <td>@request.Comment</td>
+                <td>@request.LeaveType</td>
+                <td class="@(request.LeaveStatus == LeaveStatus.Approved? "bg-primary text-white": request.LeaveStatus == LeaveStatus.Rejected? "bg-danger text-white": request.LeaveStatus == LeaveStatus.Pending? "bg-secondary text-white": "")">
+                    @request.LeaveStatus
+                </td>
+                <td>
+                    @if (User.IsInRole("Hr"))
+                    {
+                        <a asp-action="Approve" asp-route-id="@request.LeaveRequestId" class="btn btn-primary">Approve</a>
+                        <a asp-action="Decline" asp-route-id="@request.LeaveRequestId" class="btn btn-danger">Decline</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

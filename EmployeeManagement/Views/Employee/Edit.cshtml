@@ -1,0 +1,41 @@
+﻿@model EmployeeManagement.DTOs.EmployeeEditDTO
+@{
+}
+
+<h2>Edit Employee</h2>
+<form asp-action="Edit" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+     <input type="hidden" asp-for="EmployeeId" /> 
+
+    <div class="from-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="from-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="from-group">
+        <label asp-for="AnnualLeaveDaysRemaining" class="control-label"></label>
+        <input asp-for="AnnualLeaveDaysRemaining" class="form-control" />
+        <span asp-validation-for="AnnualLeaveDaysRemaining" class="text-danger"></span>
+    </div>
+
+    <div class="from-group">
+        <label asp-for="BonusLeaveDaysRemaining" class="control-label"></label>
+        <input asp-for="BonusLeaveDaysRemaining" class="form-control" />
+        <span asp-validation-for="BonusLeaveDaysRemaining" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<a asp-action="Index" class="btn btn-success">Go Back To Employees</a>
+

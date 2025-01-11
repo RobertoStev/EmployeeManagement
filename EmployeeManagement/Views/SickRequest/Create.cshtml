@@ -1,0 +1,44 @@
+﻿@model EmployeeManagement.DTOs.SickLeaveCreateDTO;
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var employeeId = Context.Session.GetString("EmployeeId");
+
+}
+
+<h2>Create Sick request</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+
+    <!-- Hidden input for EmployeeId -->
+    <input type="hidden" name="EmployeeId" value="@employeeId" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label"></label>
+        <input asp-for="StartDate" class="form-control" type="date" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label"></label>
+        <input asp-for="EndDate" class="form-control" type="date" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="from-group">
+        <label asp-for="Reason" class="control-label"></label>
+        <input asp-for="Reason" class="form-control" />
+        <span asp-validation-for="Reason" class="text-danger"></span>
+    </div>
+
+    <div class="from-group">
+        <label asp-for="MedicalReport" class="control-label"></label>
+        <input asp-for="MedicalReport" type="file" class="form-control" />
+        <span asp-validation-for="MedicalReport" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

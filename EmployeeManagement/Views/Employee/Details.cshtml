@@ -1,0 +1,64 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>This page is dedicated to show your details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="text-center">Employee Details</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-sm-4 font-weight-bold">Name:</div>
+            <div class="col-sm-8">@Html.DisplayFor(model => model.Name)</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4 font-weight-bold">Email:</div>
+            <div class="col-sm-8">@Html.DisplayFor(model => model.Email)</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4 font-weight-bold">Annual Leave Days Remaining:</div>
+            <div class="col-sm-8">@Html.DisplayFor(model => model.AnnualLeaveDaysRemaining)</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4 font-weight-bold">Bonus Leave Days Remaining:</div>
+            <div class="col-sm-8">@Html.DisplayFor(model => model.BonusLeaveDaysRemaining)</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4 font-weight-bold">Created At:</div>
+            <div class="col-sm-8">@Html.DisplayFor(model => model.CreatedAt)</div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4 font-weight-bold">First Part Leave Expiry:</div>
+            <div class="col-sm-8">
+                @if (Model.FirstPartLeaveExpiry == null)
+                {
+                    <span>Expired</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.FirstPartLeaveExpiry)
+                }
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-4 font-weight-bold">Second Part Leave Expiry:</div>
+            <div class="col-sm-8">
+                @if (Model.SecondPartLeaveExpiry == null)
+                {
+                    <span>Expired</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.SecondPartLeaveExpiry)
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-center">
+        <a asp-action="EmployeeInfo" class="btn btn-secondary">Back</a>
+    </div>
+</div>
