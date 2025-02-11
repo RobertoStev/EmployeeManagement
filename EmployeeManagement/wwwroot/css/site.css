@@ -28,3 +28,17 @@ body {
 .bg-lightcoral {
     background-color: #f8d7da !important; /* Light red */
 }
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.badge {
+    font-size: 0.85em;
+    padding: 0.5em 0.75em;
+}
+
+.card-header {
+    font-weight: 500;
+}

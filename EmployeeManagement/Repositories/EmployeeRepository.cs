@@ -48,20 +48,6 @@ namespace EmployeeManagement.Repositories
 
         public async Task UpdateEmployeeAsync(Employee employee)
         {
-            /*var existingEmployee = await _context.Employees
-           .FirstOrDefaultAsync(emp => emp.EmployeeId == employee.EmployeeId);
-
-            if (existingEmployee == null)
-            {
-                throw new KeyNotFoundException("Employee not found.");
-            }
-         
-            existingEmployee.Name = employee.Name;
-            existingEmployee.AnnualLeaveDaysRemaining = employee.AnnualLeaveDaysRemaining;
-            existingEmployee.BonusLeaveDaysRemaining = employee.BonusLeaveDaysRemaining;
-            existingEmployee.FirstPartLeaveExpiry = employee.FirstPartLeaveExpiry;
-            existingEmployee.SecondPartLeaveExpiry = employee.SecondPartLeaveExpiry;*/
-
             _context.Employees.Update(employee);
             await _context.SaveChangesAsync();
         }

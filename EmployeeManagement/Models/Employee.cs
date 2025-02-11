@@ -13,7 +13,7 @@ namespace EmployeeManagement.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? FirstPartLeaveExpiry { get; set; }
         public DateTime? SecondPartLeaveExpiry { get; set; }
-
+        public string Picture { get; set; }
 
         public ICollection<LeaveRequest> LeaveRequests { get; set; }
         public ICollection<SickLeave> SickLeaves { get; set; }

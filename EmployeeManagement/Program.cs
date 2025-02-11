@@ -13,11 +13,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ModelConnection"))
-    );
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ModelConnection")
+    ));
 
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddHostedService<LeaveManagementService>();
 builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();

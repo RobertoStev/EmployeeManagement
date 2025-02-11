@@ -6,6 +6,7 @@ using EmployeeManagement.Repositories;
 using EmployeeManagement.Services;
 using EmployeeManagement.Tests.Fakes;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Moq;
 
 
@@ -17,6 +18,7 @@ namespace EmployeeManagement.Tests.Controllers
         private IEmployeeRepository _fakeEmployeeRepository; 
         private IEmployeeService _fakeEmployeeService;
         private Mock<IMapper> _mockMapper;
+        private IMemoryCache _mockCache;
         private EmployeeController _controller;
 
         [TestInitialize]
@@ -24,8 +26,9 @@ namespace EmployeeManagement.Tests.Controllers
         {
             _fakeEmployeeRepository = new FakeEmployeeRepository();
             _fakeEmployeeService = new FakeEmployeeService();
-            _mockMapper = new Mock<IMapper>(); 
-            _controller = new EmployeeController(_fakeEmployeeRepository, _fakeEmployeeService, _mockMapper.Object);
+            _mockMapper = new Mock<IMapper>();
+            _mockCache = new MemoryCache(new MemoryCacheOptions());
+            _controller = new EmployeeController(_fakeEmployeeRepository, _fakeEmployeeService, _mockMapper.Object, _mockCache);
 
         }
         [TestMethod]
@@ -119,9 +122,10 @@ namespace EmployeeManagement.Tests.Controllers
         {
             // Arrange
             var employeeId = 3;
+            var pageNumber = 1;
 
             // Act
-            var result = await _controller.Delete(employeeId);
+            var result = await _controller.Delete(employeeId, pageNumber);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
