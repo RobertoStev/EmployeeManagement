@@ -35,10 +35,16 @@ namespace EmployeeManagement.Repositories
                  .FirstOrDefaultAsync(lr => lr.LeaveRequestId == id);
         }
 
-        public async Task UpdateLeaveRequestAsync(LeaveRequest leaveRequest)
+        public async Task UpdateLeaveRequestAndEmployeeAsync(LeaveRequest leaveRequest)
         {
             _context.LeaveRequests.Update(leaveRequest);
             _context.Employees.Update(leaveRequest.Employee);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateLeaveRequestAsync(LeaveRequest leaveRequest)
+        {
+            _context.LeaveRequests.Update(leaveRequest);
             await _context.SaveChangesAsync();
         }
     }

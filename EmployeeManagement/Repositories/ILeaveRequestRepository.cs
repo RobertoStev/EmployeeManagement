@@ -8,8 +8,9 @@ namespace EmployeeManagement.Repositories
         Task<LeaveRequest?> GetLeaveRequestWithEmployeeAsync(int id);
         Task<LeaveRequest?> GetLeaveRequestsByIdAsync(int id);
         Task AddLeaveRequestAsync(LeaveRequest leaveRequest);
+        Task UpdateLeaveRequestAndEmployeeAsync(LeaveRequest leaveRequest);
         Task UpdateLeaveRequestAsync(LeaveRequest leaveRequest);
 
-        
+
     }
 }

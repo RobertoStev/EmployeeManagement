@@ -55,7 +55,8 @@ else
                     @Model.CreatedAt
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@Model.EmployeeId" class="btn btn-primary">See details</a>
+                    <!--<a asp-action="Details" asp-route-id="@Model.EmployeeId" class="btn btn-primary">See details</a>-->
+                    <a asp-action="Details" asp-route-id="@Model.EmployeeId" asp-route-returnUrl="@Url.Action("EmployeeInfo")" class="btn btn-primary">See details</a>
                 </td>
             </tr>
         </tbody>

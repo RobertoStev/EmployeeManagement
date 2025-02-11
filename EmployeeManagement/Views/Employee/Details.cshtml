@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var returnUrl = ViewData["ReturnUrl"] as string;
 }
 
 <h1>This page is dedicated to show your details</h1>
@@ -59,6 +60,6 @@
         </div>
     </div>
     <div class="card-footer text-center">
-        <a asp-action="EmployeeInfo" class="btn btn-secondary">Back</a>
+        <a href="@returnUrl" class="btn btn-secondary">Back</a>
     </div>
 </div>

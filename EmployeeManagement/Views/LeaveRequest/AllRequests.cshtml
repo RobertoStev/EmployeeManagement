@@ -30,7 +30,8 @@
     <tbody>
         @foreach (var request in Model)
         {
-            <tr>
+            <tr class="@(request.LeaveStatus == LeaveStatus.Approved ? "bg-lightblue" :
+            request.LeaveStatus == LeaveStatus.Rejected ? "bg-lightcoral" : "")">
                 <td>@request.Employee.Name</td>
                 <td>@request.Employee.Email</td>
                 <td>@request.Employee.AnnualLeaveDaysRemaining</td>
@@ -39,11 +40,11 @@
                 <td>@request.EndDate</td>
                 <td>@request.Comment</td>
                 <td>@request.LeaveType</td>
-                <td class="@(request.LeaveStatus == LeaveStatus.Approved? "bg-primary text-white": request.LeaveStatus == LeaveStatus.Rejected? "bg-danger text-white": request.LeaveStatus == LeaveStatus.Pending? "bg-secondary text-white": "")">
+                <td class="@(request.LeaveStatus == LeaveStatus.Pending? "bg-secondary text-white": "")">
                     @request.LeaveStatus
                 </td>
                 <td>
-                    @if (User.IsInRole("Hr"))
+                    @if (User.IsInRole("Hr") && request.LeaveStatus == LeaveStatus.Pending)
                     {
                         <a asp-action="Approve" asp-route-id="@request.LeaveRequestId" class="btn btn-primary">Approve</a>
                         <a asp-action="Decline" asp-route-id="@request.LeaveRequestId" class="btn btn-danger">Decline</a>

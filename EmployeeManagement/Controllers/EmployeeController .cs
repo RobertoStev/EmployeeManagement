@@ -16,13 +16,11 @@ namespace EmployeeManagement.Controllers
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IEmployeeService _employeeService;
         private readonly IMapper _mapper;
-        private readonly IMemoryCache _cache;
-        public EmployeeController(IEmployeeRepository employeeRepository, IEmployeeService employeeService, IMapper mapper, IMemoryCache cache)
+        public EmployeeController(IEmployeeRepository employeeRepository, IEmployeeService employeeService, IMapper mapper)
         {
             _employeeRepository = employeeRepository;
             _employeeService = employeeService;
             _mapper = mapper;
-            _cache = cache;
         }
 
         public IActionResult TestRoles()
@@ -65,7 +63,7 @@ namespace EmployeeManagement.Controllers
             return View(employeeGet);
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, string returnUrl)
         {
             var detailsForUser = await _employeeRepository.GetEmployeeByIdAsync(id);
 
@@ -73,7 +71,8 @@ namespace EmployeeManagement.Controllers
             {
                 return NotFound();
             }
-  
+
+            ViewData["ReturnUrl"] = returnUrl;
             return View(detailsForUser);
         }
 

@@ -34,7 +34,8 @@
                     {
                         <a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-primary">Edit</a>
                         <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger">Delete</a>
-                        <a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-warning">Details</a>
+                        <!--<a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-warning">Details</a>-->
+                        <a asp-action="Details" asp-route-id="@employee.EmployeeId" asp-route-returnUrl="@Url.Action("AllEmployees")" class="btn btn-warning">Details</a>
                         <a asp-action="ManageDays" asp-route-id="@employee.EmployeeId" class="btn btn-success">Manage Days</a>
                     }                  
                 </td>

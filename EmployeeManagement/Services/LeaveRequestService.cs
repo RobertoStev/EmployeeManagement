@@ -2,6 +2,7 @@
 using EmployeeManagement.DTOs;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repositories;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace EmployeeManagement.Services
 {
@@ -89,7 +90,7 @@ namespace EmployeeManagement.Services
             leaveRequest.LeaveStatus = Enums.EnumTypes.LeaveStatus.Approved;
 
             // Save the leave request and update employee data
-            await _leaveRequestRepository.UpdateLeaveRequestAsync(leaveRequest);
+            await _leaveRequestRepository.UpdateLeaveRequestAndEmployeeAsync(leaveRequest);
 
             return true;
         }
@@ -99,7 +100,7 @@ namespace EmployeeManagement.Services
             var leaveRequest = await _leaveRequestRepository.GetLeaveRequestsByIdAsync(id);
             if (leaveRequest == null)
             {
-                throw new Exception("Leave request not found.");
+                throw new Exception("Leave request not found.");   
             }
 
             leaveRequest.LeaveStatus = Enums.EnumTypes.LeaveStatus.Rejected;
