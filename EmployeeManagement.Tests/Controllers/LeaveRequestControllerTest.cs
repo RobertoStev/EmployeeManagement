@@ -84,7 +84,7 @@ namespace EmployeeManagement.Tests.Controllers
         public async Task Approve_ValidId_ShouldRedirectToAllRequests()
         {
             // Act
-            var result = await _controller.Approve(1) as RedirectToActionResult;
+            var result = await _controller.Approve(1, 1) as RedirectToActionResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -95,7 +95,7 @@ namespace EmployeeManagement.Tests.Controllers
         public async Task Decline_ValidId_ShouldRedirectToAllRequests()
         {
             // Act
-            var result = await _controller.Decline(1) as RedirectToActionResult;
+            var result = await _controller.Decline(1, 1) as RedirectToActionResult;
 
             // Assert
             Assert.IsNotNull(result);

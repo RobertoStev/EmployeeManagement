@@ -36,15 +36,35 @@ namespace EmployeeManagement.Tests.Controllers
         [TestMethod]
         public async Task AllRequests_Returns_View_With_SickLeaves_When_Cache_Miss()
         {
+            // Arrange
+            var expectedSickLeaves = (await _sickLeaveRequestRepository.GetAllSickLeavesAndEmployeeAsync())
+                .Take(5) // PageSize = 5 by default
+                .ToList();
+
+            // Mock AutoMapper configuration
+            _mockMapper.Setup(m => m.Map<List<SickLeaveGetDTO>>(It.IsAny<List<SickLeave>>()))
+                .Returns((List<SickLeave> source) =>
+                    source.Select(s => new SickLeaveGetDTO
+                    {
+                        SickLeaveId = s.SickLeaveId,
+                        StartDate = s.StartDate,
+                        EndDate = s.EndDate,
+                        Reason = s.Reason,
+                        MedicalReportPath = s.MedicalReportPath,
+                        LeavStatus = s.LeavStatus,
+                        EmployeeId = s.EmployeeId,
+                        Employee = s.Employee                     
+                    }).ToList());
+
             // Act
             var result = await _controller.AllRequests();
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             var viewResult = result as ViewResult;
-            var model = viewResult.Model as List<SickLeave>;
+            var model = viewResult.Model as List<SickLeaveGetDTO>;
             Assert.IsNotNull(model);
-            Assert.AreEqual(2, model.Count); // Ensure the fake repository data is returned
+            Assert.AreEqual(expectedSickLeaves.Count, model.Count);
         }
 
         [TestMethod]
@@ -87,7 +107,7 @@ namespace EmployeeManagement.Tests.Controllers
             int sickLeaveId = 1;
 
             // Act
-            var result = await _controller.Approve(sickLeaveId);
+            var result = await _controller.Approve(sickLeaveId, 1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
@@ -102,7 +122,7 @@ namespace EmployeeManagement.Tests.Controllers
             int sickLeaveId = 1;
 
             // Act
-            var result = await _controller.Decline(sickLeaveId);
+            var result = await _controller.Decline(sickLeaveId, 1);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
