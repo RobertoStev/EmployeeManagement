@@ -28,7 +28,7 @@ namespace EmployeeManagement.Repositories
         public async Task<SickLeave?> GetSickLeaveByIdAsync(int id)
         {
             return await _context.SickLeaves
-                .Include(sl => sl.Employee)
+                //.Include(sl => sl.Employee)
                 .FirstOrDefaultAsync(sl => sl.SickLeaveId == id);
         }
 

@@ -2,43 +2,52 @@
 @inject IHttpContextAccessor HttpContextAccessor
 @{
     var employeeId = Context.Session.GetString("EmployeeId");
-
 }
 
-<h2>Create Sick request</h2>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0">Create Sick Leave Request</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <!-- Hidden EmployeeId -->
+                        <input type="hidden" name="EmployeeId" value="@employeeId" />
 
-<form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
 
-    <!-- Hidden input for EmployeeId -->
-    <input type="hidden" name="EmployeeId" value="@employeeId" />
+                        <div class="mb-3">
+                            <label asp-for="StartDate" class="form-label fw-bold"></label>
+                            <input asp-for="StartDate" class="form-control form-control-sm" type="date" />
+                            <span asp-validation-for="StartDate" class="text-danger small"></span>
+                        </div>
 
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="EndDate" class="form-label fw-bold"></label>
+                            <input asp-for="EndDate" class="form-control form-control-sm" type="date" />
+                            <span asp-validation-for="EndDate" class="text-danger small"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="StartDate" class="control-label"></label>
-        <input asp-for="StartDate" class="form-control" type="date" />
-        <span asp-validation-for="StartDate" class="text-danger"></span>
+                        <div class="mb-3">
+                            <label asp-for="Reason" class="form-label fw-bold"></label>
+                            <input asp-for="Reason" class="form-control form-control-sm" placeholder="Enter reason" />
+                            <span asp-validation-for="Reason" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="MedicalReport" class="form-label fw-bold"></label>
+                            <input asp-for="MedicalReport" type="file" class="form-control form-control-sm" />
+                            <span asp-validation-for="MedicalReport" class="text-danger small"></span>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-sm px-4">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="EndDate" class="control-label"></label>
-        <input asp-for="EndDate" class="form-control" type="date" />
-        <span asp-validation-for="EndDate" class="text-danger"></span>
-    </div>
-
-    <div class="from-group">
-        <label asp-for="Reason" class="control-label"></label>
-        <input asp-for="Reason" class="form-control" />
-        <span asp-validation-for="Reason" class="text-danger"></span>
-    </div>
-
-    <div class="from-group">
-        <label asp-for="MedicalReport" class="control-label"></label>
-        <input asp-for="MedicalReport" type="file" class="form-control" />
-        <span asp-validation-for="MedicalReport" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</form>
+</div>

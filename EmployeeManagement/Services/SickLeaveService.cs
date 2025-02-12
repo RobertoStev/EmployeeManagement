@@ -14,8 +14,7 @@ namespace EmployeeManagement.Services
             _sickLeaveRepository = sickLeaveRepository;
             _mapper = mapper;
         }
-
-        
+ 
         public async Task CreateSickLeaveAsync(int employeeId, SickLeaveCreateDTO sickLeave)
         {
             string relativePath = null;

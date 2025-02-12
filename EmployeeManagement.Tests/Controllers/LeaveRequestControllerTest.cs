@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Controllers;
+﻿using AutoMapper;
+using EmployeeManagement.Controllers;
 using EmployeeManagement.DTOs;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repositories;
@@ -19,6 +20,7 @@ namespace EmployeeManagement.Tests.Controllers
         private ILeaveRequestService _fakeService;
         private IMemoryCache _mockCache;
         private LeaveRequestController _controller;
+        private Mock<IMapper> _mockMapper;
 
         [TestInitialize]
         public void Setup()
@@ -26,7 +28,8 @@ namespace EmployeeManagement.Tests.Controllers
             _fakeRepository = new FakeLeaveRequestRepository();
             _fakeService = new FakeLeaveRequestService();
             _mockCache = new MemoryCache(new MemoryCacheOptions());
-            _controller = new LeaveRequestController(_fakeRepository, _fakeService, _mockCache);
+            _mockMapper = new Mock<IMapper>();
+            _controller = new LeaveRequestController(_fakeRepository, _fakeService, _mockCache, _mockMapper.Object);
         }
 
         [TestMethod]

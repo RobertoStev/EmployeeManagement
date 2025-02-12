@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.DTOs;
+﻿using AutoMapper;
+using EmployeeManagement.DTOs;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repositories;
 using EmployeeManagement.Services;
@@ -14,21 +15,22 @@ namespace EmployeeManagement.Controllers
         private readonly ISickLeaveRequestRepository _sickLeaveRequestRepository;
         private readonly ISickLeaveService _sickLeaveService;
         private readonly IMemoryCache _cache;
-        public SickRequestController(ISickLeaveRequestRepository sickLeaveRequestRepository, ISickLeaveService sickLeaveService, IMemoryCache cache) 
+        private readonly IMapper _mapper;
+        public SickRequestController(ISickLeaveRequestRepository sickLeaveRequestRepository, ISickLeaveService sickLeaveService, IMemoryCache cache, IMapper mapper) 
         { 
             _sickLeaveRequestRepository = sickLeaveRequestRepository;
             _sickLeaveService = sickLeaveService;    
             _cache = cache;
+            _mapper = mapper;
         }
         [Authorize(Roles = "Hr")]
-        public async Task<IActionResult> AllRequests()
+        public async Task<IActionResult> AllRequests(int page = 1, int pageSize = 5)
         {
             string cacheKey = "AllSickLeaves";
             List<SickLeave> sickLeaves;
           
             if (!_cache.TryGetValue(cacheKey, out sickLeaves))
-            {
-                
+            {  
                 sickLeaves = await _sickLeaveRequestRepository.GetAllSickLeavesAndEmployeeAsync();
                
                 var cacheOptions = new MemoryCacheEntryOptions
@@ -37,11 +39,21 @@ namespace EmployeeManagement.Controllers
                     SlidingExpiration = TimeSpan.FromMinutes(5) 
                 };
 
-                //Save data in cache
                 _cache.Set(cacheKey, sickLeaves, cacheOptions);
             }
 
-            return View(sickLeaves);
+            var paginatedSickLeaves = sickLeaves
+           .Skip((page - 1) * pageSize)
+           .Take(pageSize)
+           .ToList();
+
+            var sickLeavesGet = _mapper.Map<List<SickLeaveGetDTO>>(paginatedSickLeaves);
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalRequests = sickLeaves.Count;   
+
+            return View(sickLeavesGet);
         }
 
         public IActionResult Create()
@@ -52,44 +64,40 @@ namespace EmployeeManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(int employeeId, SickLeaveCreateDTO sickLeave)
         {
-            _cache.Remove("AllSickLeaves");
-
             if (ModelState.IsValid)
             { 
                 await _sickLeaveService.CreateSickLeaveAsync(employeeId, sickLeave);
+
+                _cache.Remove("AllSickLeaves");
+
                 return RedirectToAction("Requests", "Employee", new { id = employeeId });    
             }
 
             return View(sickLeave);
         }
+
         [Authorize(Roles = "Hr")]
-        public async Task<IActionResult> Approve(int id)
+        public async Task<IActionResult> Approve(int id, int page)
         {
+            await _sickLeaveService.ApproveSickLeaveAsync(id);
+
             _cache.Remove("AllSickLeaves");
 
-            var success = await _sickLeaveService.ApproveSickLeaveAsync(id);
-
-            if (!success)
-            {
-                return NotFound();
-            }
-
-            return RedirectToAction("AllRequests");
+            return RedirectToAction("AllRequests", new { page = page });
         }
+
         [Authorize(Roles = "Hr")]
-        public async Task<IActionResult> Decline(int id)
+        public async Task<IActionResult> Decline(int id, int page)
         {
-            _cache.Remove("AllSickLeaves");
-
             var success = await _sickLeaveService.DeclineSickLeaveAsync(id);
-
             if (!success)
             {
                 return NotFound();
             }
 
-            return RedirectToAction("AllRequests");
+            _cache.Remove("AllSickLeaves");
+
+            return RedirectToAction("AllRequests", new { page = page });
         }
     }
-
 }

@@ -9,6 +9,8 @@ namespace EmployeeManagement.AutoMapper
         public LeaveRequestMappingProfiles()
         {
             CreateMap<LeaveRequestCreateDTO, LeaveRequest>();
+
+            CreateMap<LeaveRequest, LeaveRequestGetDTO>();
         }
     }
 }

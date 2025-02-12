@@ -51,11 +51,10 @@ namespace EmployeeManagement.Services
 
             await _leaveRequestRepository.AddLeaveRequestAsync(leaveRequestToSave);
 
-
             return leaveRequestToSave;
         }
 
-        public  async Task<bool> ApproveLeaveRequestAsync(int id)
+        public async Task<bool> ApproveLeaveRequestAsync(int id)
         {
             var leaveRequest = await _leaveRequestRepository.GetLeaveRequestWithEmployeeAsync(id);
             if (leaveRequest == null)

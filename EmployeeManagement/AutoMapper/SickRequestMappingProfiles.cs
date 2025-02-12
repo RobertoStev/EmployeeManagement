@@ -8,7 +8,9 @@ namespace EmployeeManagement.AutoMapper
     {
         public SickRequestMappingProfiles() 
         {
-            CreateMap<SickLeaveCreateDTO, SickLeave>();
+            CreateMap<SickLeave, SickLeaveGetDTO>();
+
+            CreateMap<SickLeaveCreateDTO, SickLeave>();            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Controllers;
+﻿using AutoMapper;
+using EmployeeManagement.Controllers;
 using EmployeeManagement.DTOs;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repositories;
@@ -19,6 +20,7 @@ namespace EmployeeManagement.Tests.Controllers
         private ISickLeaveService _sickLeaveService;
         private IMemoryCache _memoryCache;
         private SickRequestController _controller;
+        private Mock<IMapper> _mockMapper;
 
         [TestInitialize]
         public void Setup()
@@ -26,8 +28,9 @@ namespace EmployeeManagement.Tests.Controllers
             _sickLeaveRequestRepository = new FakeSickLeaveRepository();
             _sickLeaveService = new FakeSickLeaveService();
             _memoryCache = new MemoryCache(new MemoryCacheOptions()); // Use a real cache but ignore it
+            _mockMapper = new Mock<IMapper>();
 
-            _controller = new SickRequestController(_sickLeaveRequestRepository, _sickLeaveService, _memoryCache);
+            _controller = new SickRequestController(_sickLeaveRequestRepository, _sickLeaveService, _memoryCache, _mockMapper.Object);
         }
 
         [TestMethod]

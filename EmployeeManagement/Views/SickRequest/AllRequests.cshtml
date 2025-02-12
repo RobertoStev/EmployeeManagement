@@ -1,51 +1,54 @@
-﻿@model IEnumerable<SickLeave>
+﻿@model IEnumerable<EmployeeManagement.DTOs.SickLeaveGetDTO>
 @using static EmployeeManagement.Enums.EnumTypes
 @{
+    int currentPage = ViewBag.CurrentPage;
+    int pageSize = ViewBag.PageSize;
+    int totalRequests = ViewBag.TotalRequests;
+    int totalPages = (int)Math.Ceiling((double)totalRequests / pageSize);
 }
 
-<h2>All current Sick Leaves</h2>
+<h2 class="text-center mb-4">Sick Leave Requests</h2>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
         <tr>
-            <th>Name of the Employee</th>
-            <th>Email</th>
-            <th>Annual Leave Days Remaining</th>
-            <th>Bonus Leave Days Remaining</th>
-            <th>StartDate</th>
-            <th>EndDate</th>
-            <th>Reason</th>
-            <th>MedicalReportPath</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th class="text-center">Employee Name</th>
+            <th class="text-center">Start Date</th>
+            <th class="text-center">End Date</th>
+            <th class="text-center">Medical Documentation</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var request in Model)
         {
             <tr class="@(request.LeavStatus == LeaveStatus.Approved ? "bg-lightblue" :
-            request.LeavStatus == LeaveStatus.Rejected ? "bg-lightcoral" : "")">
-                <td>@request.Employee.Name</td>
-                <td>@request.Employee.Email</td>
-                <td>@request.Employee.AnnualLeaveDaysRemaining</td>
-                <td>@request.Employee.BonusLeaveDaysRemaining</td>
-                <td>@request.StartDate</td>
-                <td>@request.EndDate</td>
-                <td>@request.Reason</td>
-                <td>
+                      request.LeavStatus == LeaveStatus.Rejected ? "bg-lightcoral" : "")">
+                <td class="text-center">@request.Employee.Name</td>
+                <td class="text-center">@request.StartDate.ToShortDateString()</td>
+                <td class="text-center">@request.EndDate.ToShortDateString()</td>
+                <td class="text-center">
                     @if (!string.IsNullOrEmpty(request.MedicalReportPath))
                     {
-                        <a href="@Url.Content($"~/uploads/{System.IO.Path.GetFileName(request.MedicalReportPath)}")" target="_blank">Download</a>
+                        <a href="@request.MedicalReportPath" target="_blank">Download</a>
+                    }
+                    else
+                    {
+                        <span>No</span>
                     }
                 </td>
-                <td class="@(request.LeavStatus == LeaveStatus.Pending? "bg-secondary text-white": "")">
-                    @request.LeavStatus
+
+                <td class="text-center">
+                    <span class="@(request.LeavStatus == LeaveStatus.Pending ? "badge bg-secondary fw-bold p-1" : "")">
+                        @request.LeavStatus
+                    </span>
                 </td>
-                <td>
+                <td class="text-center">
                     @if (User.IsInRole("Hr") && request.LeavStatus == LeaveStatus.Pending)
                     {
-                        <a asp-action="Approve" asp-route-id="@request.SickLeaveId" class="btn btn-primary">Approve</a>
-                        <a asp-action="Decline" asp-route-id="@request.SickLeaveId" class="btn btn-danger">Decline</a>
+                        <a asp-action="Approve" asp-route-id="@request.SickLeaveId" asp-route-page="@ViewBag.CurrentPage" class="btn btn-primary btn-sm">Approve</a>
+                        <a asp-action="Decline" asp-route-id="@request.SickLeaveId" asp-route-page="@ViewBag.CurrentPage" class="btn btn-danger btn-sm">Decline</a>
                     }
                 </td>
             </tr>
@@ -53,3 +56,31 @@
     </tbody>
 </table>
 
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        @if (currentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="AllRequests" asp-route-page="@(currentPage - 1)">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        }
+
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            <li class="page-item @(i == currentPage ? "active" : "")">
+                <a class="page-link" asp-action="AllRequests" asp-route-page="@i">@i</a>
+            </li>
+        }
+
+        @if (currentPage < totalPages)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="AllRequests" asp-route-page="@(currentPage + 1)">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>
