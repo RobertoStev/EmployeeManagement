@@ -30,6 +30,7 @@ builder.Services.AddScoped<ISickLeaveService, SickLeaveService>();
 
 // Add session support
 builder.Services.AddSession();
+builder.Services.AddHostedService<LeaveManagementService>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()

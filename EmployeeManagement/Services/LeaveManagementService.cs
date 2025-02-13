@@ -24,35 +24,44 @@ namespace EmployeeManagement.Services
         {
             try
             {
-                using (var scope = _scopeFactory.CreateScope())
+                using var scope = _scopeFactory.CreateScope();
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                var employees = context.Employees.ToList();
+                var now = DateTime.Now;
+
+                foreach (var employee in employees)
                 {
-                    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                    bool employeeUpdated = false;
 
-                    var employees = context.Employees.ToList();
-                    var now = DateTime.Now;
-
-                    foreach (var employee in employees)
+                    if (employee.FirstPartLeaveExpiry.HasValue && employee.FirstPartLeaveExpiry.Value < now)
                     {
+                        employee.AnnualLeaveDaysRemaining = Math.Min(employee.AnnualLeaveDaysRemaining, 11);
+                        employee.BonusLeaveDaysRemaining = 0;
+                        employee.FirstPartLeaveExpiry = null;
+                        employeeUpdated = true;
 
-                        if (employee.FirstPartLeaveExpiry.HasValue && employee.FirstPartLeaveExpiry.Value < now)
-                        {
-                            employee.AnnualLeaveDaysRemaining -= Math.Min(employee.AnnualLeaveDaysRemaining, 11);
-                            employee.BonusLeaveDaysRemaining = 0;
-                            employee.FirstPartLeaveExpiry = null;
-
-                        }
-
-                        if (employee.SecondPartLeaveExpiry.HasValue && employee.SecondPartLeaveExpiry.Value < now)
-                        {
-                            employee.AnnualLeaveDaysRemaining = 0;
-                            employee.SecondPartLeaveExpiry = null;
-                        }
-
-                        context.Employees.Update(employee);
-                        context.SaveChanges(); //ili nadvor od foreach
+                        _logger.LogInformation("First part expired for employee with id = {Id}", employee.EmployeeId);
+                    
                     }
-                    _logger.LogInformation("Updated leave balances for {count} employees", employees.Count);
-                }
+
+                    if (employee.SecondPartLeaveExpiry.HasValue && employee.SecondPartLeaveExpiry.Value < now)
+                    {
+                        employee.AnnualLeaveDaysRemaining = 0;
+                        employee.SecondPartLeaveExpiry = null;
+                        employeeUpdated = true;
+
+                        _logger.LogInformation("Second part expired for employee with id = {Id}", employee.EmployeeId);
+                
+                    }
+
+                    if (employeeUpdated)
+                    {
+                        context.Employees.Update(employee);
+                        context.SaveChanges();
+                    }
+  
+                }   
             }
             catch (Exception ex)
             {

@@ -221,13 +221,20 @@ namespace EmployeeManagement.Controllers
         public async Task<IActionResult> ManageDays(EmployeeManageDaysDTO employeeDto, int page)
         {
             if(ModelState.IsValid)
-            { 
-                await _employeeService.MangeDaysForEmployeeAsync(employeeDto);
-        
-                _cache.Remove("AllEmployees");
+            {
+                try
+                {
+                    await _employeeService.MangeDaysForEmployeeAsync(employeeDto);
 
-                return RedirectToAction("AllEmployees", new { page = page }); // Redirect with page
-                
+                    _cache.Remove("AllEmployees");
+
+                    return RedirectToAction("AllEmployees", new { page = page }); // Redirect with page
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View(employeeDto);
+                }
             }
             return View(employeeDto);
         }
