@@ -46,10 +46,22 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Info/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.Use(async (context, next) =>
+{
+    // Check if the request is for the root path and the user is authenticated
+    if (context.Request.Path == "/" && context.User.Identity.IsAuthenticated)
+    {
+        context.Response.Redirect("/Employee/EmployeeInfo");
+        return;
+    }
+
+    await next();
+});
 
 // Add session middleware
 app.UseSession(); 
@@ -63,7 +75,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Employee}/{action=EmployeeInfo}/{id?}");
+    pattern: "{controller=Info}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

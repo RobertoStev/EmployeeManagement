@@ -233,6 +233,9 @@ namespace EmployeeManagement.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", ex.Message);
+
+                    ViewBag.CurrentPage = page;
+
                     return View(employeeDto);
                 }
             }

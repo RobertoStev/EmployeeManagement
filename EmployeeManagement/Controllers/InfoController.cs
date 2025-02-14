@@ -1,23 +1,37 @@
 using EmployeeManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace EmployeeManagement.Controllers
 {
-    public class HomeController : Controller
+    public class InfoController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<InfoController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public InfoController(ILogger<InfoController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            // Redirect authenticated users to EmployeeInfo
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("EmployeeInfo", "Employee");
+            }
+
             return View();
         }
 
+        [Authorize]
+        public IActionResult HomePage()
+        {
+            return View();
+        }
+
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

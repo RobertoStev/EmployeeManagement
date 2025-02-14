@@ -7,56 +7,76 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EmployeeManagement.styles.css" asp-append-version="true" />
+    <style>
+        /* Custom style for active nav links */
+        .navbar-nav .nav-link.active {
+            background-color: #e0f7fa;
+            color: #00796b !important;
+            font-weight: bold;
+            border-radius: 0.25rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #b2ebf2;
+            border-radius: 0.25rem;
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EmployeeManagement</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Info" asp-action="HomePage">EmployeeManagement</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @* Determine current controller and action *@
+                    @{
+                        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+                        var employeeId = Context.Session.GetString("EmployeeId");
+                    }
                     <ul class="navbar-nav flex-grow-1">
-                       
-                        @if (User.Identity.IsAuthenticated && Context.Session.GetString("EmployeeId") != null)
+                        @if (User.Identity.IsAuthenticated && !string.IsNullOrEmpty(employeeId))
                         {
-                            var employeeId = Context.Session.GetString("EmployeeId");
-
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="EmployeeInfo">My info</a>
+                                <a class="nav-link text-dark @(currentController == "Employee" && currentAction == "EmployeeInfo" ? "active" : "")"
+                                   asp-area="" asp-controller="Employee" asp-action="EmployeeInfo">My Info</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Requests" asp-route-id="@employeeId">My Requests</a>
+                                <a class="nav-link text-dark @(currentController == "Employee" && currentAction == "Requests" ? "active" : "")"
+                                   asp-area="" asp-controller="Employee" asp-action="Requests" asp-route-id="@employeeId">My Requests</a>
                             </li>
-
                             @if (User.IsInRole("Hr"))
                             {
-                               
-
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="AllEmployees">All Employees Info</a>
+                                    <a class="nav-link text-dark @(currentController == "Employee" && currentAction == "AllEmployees" ? "active" : "")"
+                                       asp-area="" asp-controller="Employee" asp-action="AllEmployees">All Employees Info</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Create">Create Employee</a>
+                                    <a class="nav-link text-dark @(currentController == "Employee" && currentAction == "Create" ? "active" : "")"
+                                       asp-area="" asp-controller="Employee" asp-action="Create">New Employee</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="LeaveRequest" asp-action="AllRequests">All Leave Requests</a>
+                                    <a class="nav-link text-dark @(currentController == "LeaveRequest" && currentAction == "AllRequests" ? "active" : "")"
+                                       asp-area="" asp-controller="LeaveRequest" asp-action="AllRequests">All Leave Requests</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="SickRequest" asp-action="AllRequests">All Sick Requests</a>
+                                    <a class="nav-link text-dark @(currentController == "SickRequest" && currentAction == "AllRequests" ? "active" : "")"
+                                       asp-area="" asp-controller="SickRequest" asp-action="AllRequests">All Sick Requests</a>
                                 </li>
                             }
-
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="LeaveRequest" asp-action="Create" asp-route-id="@employeeId">Leave Request</a>
+                                <a class="nav-link text-dark @(currentController == "LeaveRequest" && currentAction == "Create" ? "active" : "")"
+                                   asp-area="" asp-controller="LeaveRequest" asp-action="Create" asp-route-id="@employeeId">Leave Request</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="SickRequest" asp-action="Create" asp-route-id="@employeeId">Sick Request</a>
+                                <a class="nav-link text-dark @(currentController == "SickRequest" && currentAction == "Create" ? "active" : "")"
+                                   asp-area="" asp-controller="SickRequest" asp-action="Create" asp-route-id="@employeeId">Sick Request</a>
                             </li>
                         }
-                       
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -69,11 +89,11 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!--<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - EmployeeManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
