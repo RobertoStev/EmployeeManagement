@@ -42,7 +42,7 @@ namespace EmployeeManagement.Migrations
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LeaveType = table.Column<int>(type: "int", nullable: false),
                     LeaveStatus = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,7 +52,7 @@ namespace EmployeeManagement.Migrations
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,7 +66,7 @@ namespace EmployeeManagement.Migrations
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MedicalReportPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LeavStatus = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -76,7 +76,7 @@ namespace EmployeeManagement.Migrations
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(

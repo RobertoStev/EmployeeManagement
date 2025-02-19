@@ -11,7 +11,7 @@ namespace EmployeeManagement.Tests.Fakes
 {
     internal class FakeEmployeeService : IEmployeeService
     {
-        public Task CreateEmployeeAsync(Employee employee)
+        public Task CreateEmployeeAsync(EmployeeCreateDTO employee, string imagesFolderPath)
         {
             // Simulate creating an employee
             return Task.CompletedTask;

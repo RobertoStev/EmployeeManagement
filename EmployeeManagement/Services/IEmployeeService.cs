@@ -6,6 +6,6 @@ namespace EmployeeManagement.Services
     public interface IEmployeeService
     {
         Task MangeDaysForEmployeeAsync(EmployeeManageDaysDTO employeeDto);
-        Task CreateEmployeeAsync(Employee employee);
+        Task CreateEmployeeAsync(EmployeeCreateDTO employee, string imagesFolderPath);
     }
 }

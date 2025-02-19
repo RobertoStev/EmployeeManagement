@@ -20,12 +20,12 @@ namespace EmployeeManagement.Data
             modelBuilder.Entity<Employee>()
                 .HasMany(emp => emp.LeaveRequests)
                 .WithOne(lr => lr.Employee)
-                .HasForeignKey(lr => lr.EmployeeId);
+                .OnDelete(DeleteBehavior.SetNull);       
 
             modelBuilder.Entity<Employee>()
                 .HasMany(emp => emp.SickLeaves)
                 .WithOne(sl => sl.Employee)
-                .HasForeignKey(sl => sl.EmployeeId);
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

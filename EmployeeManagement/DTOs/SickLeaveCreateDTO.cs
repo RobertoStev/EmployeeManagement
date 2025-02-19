@@ -8,7 +8,7 @@ namespace EmployeeManagement.DTOs
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Reason { get; set; }
-        public IFormFile MedicalReport { get; set; } // For file upload
+        public IFormFile MedicalReport { get; set; } 
         public LeaveStatus LeaveStatus { get; set; } 
     }
 }

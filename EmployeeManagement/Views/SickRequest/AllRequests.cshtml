@@ -25,7 +25,7 @@
         {
             <tr class="@(request.LeavStatus == LeaveStatus.Approved ? "bg-lightblue" :
                       request.LeavStatus == LeaveStatus.Rejected ? "bg-lightcoral" : "")">
-                <td class="text-center">@request.Employee.Name</td>
+                <td class="text-center">@(request.Employee != null ? request.Employee.Name : "Not our employee")</td>
                 <td class="text-center">@request.StartDate.ToShortDateString()</td>
                 <td class="text-center">@request.EndDate.ToShortDateString()</td>
                 <td class="text-center">

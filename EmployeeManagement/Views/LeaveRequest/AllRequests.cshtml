@@ -37,18 +37,16 @@
         {
             <tr class="@(request.LeaveStatus == LeaveStatus.Approved ? "bg-lightblue" :
             request.LeaveStatus == LeaveStatus.Rejected ? "bg-lightcoral" : "")">
-                <td class="text-center">@request.Employee.Name</td>
-                <td class="text-center">@request.Employee.Email</td>
-                <td class="text-center">@request.Employee.AnnualLeaveDaysRemaining</td>
-                <td class="text-center">@request.Employee.BonusLeaveDaysRemaining</td>
+                <td class="text-center">@(request.Employee != null ? request.Employee.Name : "Not our employee")</td>
+                <td class="text-center">@(request.Employee?.Email ?? "/")</td>
+                <td class="text-center">@(request.Employee?.AnnualLeaveDaysRemaining.ToString() ?? "/")</td>
+                <td class="text-center">@(request.Employee?.BonusLeaveDaysRemaining.ToString() ?? "/")</td>
+               
                 <td class="text-center">@request.StartDate.ToShortDateString()</td>
                 <td class="text-center">@request.EndDate.ToShortDateString()</td>
                 <td class="text-center">@request.Comment</td>
                 <td class="text-center">@request.LeaveType</td>
 
-                <!--<td class="text-center @(request.LeaveStatus == LeaveStatus.Pending ? "bg-secondary text-white" : "")">
-                    @request.LeaveStatus
-                </td>-->
                 <td class="text-center">
                     <span class="@(request.LeaveStatus == LeaveStatus.Pending ? "badge bg-secondary fw-bold p-1" : "")">
                         @request.LeaveStatus

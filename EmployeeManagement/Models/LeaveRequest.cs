@@ -10,9 +10,6 @@ namespace EmployeeManagement.Models
         public string Comment { get; set; } 
         public LeaveType LeaveType { get; set; } 
         public LeaveStatus LeaveStatus { get; set; } 
-
-
-        public int EmployeeId { get; set; } //FK
-        public Employee Employee { get; set; } //Navigational property
+        public Employee? Employee { get; set; }
     }
 }

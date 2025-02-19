@@ -22,7 +22,7 @@ namespace EmployeeManagement.Tests.Fakes
                 Comment = "Family vacation",
                 LeaveType = LeaveType.Annual,
                 LeaveStatus = LeaveStatus.Pending,
-                EmployeeId = 1
+                //EmployeeId = 1
             });
         }
 

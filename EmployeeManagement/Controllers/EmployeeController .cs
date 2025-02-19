@@ -132,49 +132,22 @@ namespace EmployeeManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var domainEmployee = _mapper.Map<Employee>(employee);
-                // Handle file upload
-                if (employee.Picture != null && employee.Picture.Length > 0)
+                var imagesFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+                try
                 {
-                    var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-                    var extension = Path.GetExtension(employee.Picture.FileName).ToLower();
+                    await _employeeService.CreateEmployeeAsync(employee, imagesFolder);
 
-                    if (!allowedExtensions.Contains(extension))
-                    {
-                        ModelState.AddModelError("Picture", "Only image files (JPG, PNG, GIF) are allowed");
-                        return View(employee);
-                    }
+                    _cache.Remove("AllEmployees");
 
-                    var imagesFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
-
-                    // Generate filename
-                    var fileName = $"{Guid.NewGuid()}{extension}";
-                    var filePath = Path.Combine(imagesFolder, fileName);
-                    
-
-                    // Save the file to the wwwroot/images folder
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await employee.Picture.CopyToAsync(stream);
-                    }
-                    
-                    domainEmployee.Picture = fileName; // Save the file name in the database
+                    return RedirectToAction("AllEmployees");
                 }
-                else
+                catch (Exception ex)
                 {
-                    // If no picture is uploaded, set a default picture or leave it null
-                    domainEmployee = _mapper.Map<Employee>(employee);
-                    domainEmployee.Picture = "default.jpg"; // Default picture
-                }
+                    ModelState.AddModelError("", ex.Message);
+                    return View(employee);
+                }     
 
-                await _employeeService.CreateEmployeeAsync(domainEmployee);
-
-                // Invalidate the cache
-                _cache.Remove("AllEmployees");
-
-                return RedirectToAction("AllEmployees");
             }
-
             return View(employee);
         }
 
@@ -182,14 +155,13 @@ namespace EmployeeManagement.Controllers
         [Authorize(Roles = "Hr")]
         public async Task<IActionResult> Delete(int id, int page)
         {
-            //TODO: add confirmation for Deleting Employee!
             var employee = await _employeeRepository.GetEmployeeByIdAsync(id);
             if (employee == null)
             {
                 return NotFound();
             }
-
-            await _employeeRepository.DeleteEmployeeByIdAsync(employee);
+            
+            await _employeeRepository.DeleteEmployeeByIdAsync(employee.EmployeeId);
 
             _cache.Remove("AllEmployees");
 
@@ -199,7 +171,7 @@ namespace EmployeeManagement.Controllers
             //Remove the SickLeaves cache
             _cache.Remove("AllSickLeaves");
 
-            return RedirectToAction("AllEmployees", new { page = page }); // Redirect with page        }
+            return RedirectToAction("AllEmployees", new { page = page });     
         }
 
 
@@ -228,7 +200,7 @@ namespace EmployeeManagement.Controllers
 
                     _cache.Remove("AllEmployees");
 
-                    return RedirectToAction("AllEmployees", new { page = page }); // Redirect with page
+                    return RedirectToAction("AllEmployees", new { page = page });
                 }
                 catch (Exception ex)
                 {
@@ -276,7 +248,7 @@ namespace EmployeeManagement.Controllers
 
                 _cache.Remove("AllEmployees");
 
-                return RedirectToAction("AllEmployees", new { page = page }); // Redirect with page
+                return RedirectToAction("AllEmployees", new { page = page });
             }
             return View(employeeDto);
         }

@@ -23,6 +23,7 @@ namespace EmployeeManagement.Controllers
             _cache = cache;
             _mapper = mapper;
         }
+
         [Authorize(Roles = "Hr")]
         public async Task<IActionResult> AllRequests(int page = 1, int pageSize = 5)
         {
@@ -80,7 +81,6 @@ namespace EmployeeManagement.Controllers
         public async Task<IActionResult> Approve(int id, int page)
         {
             await _sickLeaveService.ApproveSickLeaveAsync(id);
-
             _cache.Remove("AllSickLeaves");
 
             return RedirectToAction("AllRequests", new { page = page });

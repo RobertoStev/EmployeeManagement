@@ -10,8 +10,6 @@ namespace EmployeeManagement.Models
         public string Reason { get; set; }
         public string MedicalReportPath { get; set; }
         public LeaveStatus LeavStatus { get; set; } 
-
-        public int EmployeeId { get; set; } //FK
-        public Employee Employee { get; set; } //Navigational property
+        public Employee? Employee { get; set; } 
     }
 }

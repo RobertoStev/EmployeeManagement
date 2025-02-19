@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.DTOs;
+﻿using AutoMapper;
+using EmployeeManagement.DTOs;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repositories;
 
@@ -7,17 +8,48 @@ namespace EmployeeManagement.Services
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
-        public EmployeeService(IEmployeeRepository repository)
+        private readonly IMapper _mapper;
+        public EmployeeService(IEmployeeRepository repository, IMapper mapper)
         {
             _employeeRepository = repository;
+            _mapper = mapper;
         }
 
-        public async Task CreateEmployeeAsync(Employee domainEmployee)
-        {
+        public async Task CreateEmployeeAsync(EmployeeCreateDTO employeeDto, string imagesFolderPath)
+        {           
+            var domainEmployee = _mapper.Map<Employee>(employeeDto);
+
+            // Handle file upload
+            if (employeeDto.Picture != null && employeeDto.Picture.Length > 0)
+            {
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                var extension = Path.GetExtension(employeeDto.Picture.FileName).ToLower();
+
+                if (!allowedExtensions.Contains(extension))
+                {
+                    throw new Exception($"Only image files(JPG, PNG, GIF) are allowed");
+                }
+
+                var fileName = $"{Guid.NewGuid()}{extension}";
+                var filePath = Path.Combine(imagesFolderPath, fileName);
+
+                // Save the file to the wwwroot/images folder
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await employeeDto.Picture.CopyToAsync(stream);
+                }
+
+                domainEmployee.Picture = fileName;
+            }
+            else
+            {
+                domainEmployee.Picture = "default.jpg";
+            }
+
+            // Set additional properties
             domainEmployee.AnnualLeaveDaysRemaining = 21;
             domainEmployee.BonusLeaveDaysRemaining = 0;
             domainEmployee.CreatedAt = DateTime.Now;
-
             domainEmployee.FirstPartLeaveExpiry = domainEmployee.CreatedAt.AddMinutes(3);
             domainEmployee.SecondPartLeaveExpiry = domainEmployee.CreatedAt.AddMinutes(5);
 
@@ -85,7 +117,7 @@ namespace EmployeeManagement.Services
                 //Add
                 if (employeeDto.AnnualLeaveDaysRemaining >= 0)
                 {
-                    employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
+                    employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
                 }
                 else //Deduct
                 {
@@ -127,7 +159,7 @@ namespace EmployeeManagement.Services
                 }
                 else //No annual leave days to deduct
                 {
-                    throw new Exception($"This employee has {employee.BonusLeaveDaysRemaining} annual leave days remaining!");
+                    throw new Exception($"This employee has {employee.AnnualLeaveDaysRemaining} annual leave days remaining!");
                 }
             }
 

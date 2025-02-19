@@ -74,7 +74,7 @@ namespace EmployeeManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
@@ -104,7 +104,7 @@ namespace EmployeeManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SickLeaveId"));
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
@@ -136,8 +136,7 @@ namespace EmployeeManagement.Migrations
                     b.HasOne("EmployeeManagement.Models.Employee", "Employee")
                         .WithMany("LeaveRequests")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Employee");
                 });
@@ -147,8 +146,7 @@ namespace EmployeeManagement.Migrations
                     b.HasOne("EmployeeManagement.Models.Employee", "Employee")
                         .WithMany("SickLeaves")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Employee");
                 });

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeManagement.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250214083121_Initial")]
+    [Migration("20250219160614_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -77,7 +77,7 @@ namespace EmployeeManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
@@ -107,7 +107,7 @@ namespace EmployeeManagement.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SickLeaveId"));
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
@@ -139,8 +139,7 @@ namespace EmployeeManagement.Migrations
                     b.HasOne("EmployeeManagement.Models.Employee", "Employee")
                         .WithMany("LeaveRequests")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Employee");
                 });
@@ -150,8 +149,7 @@ namespace EmployeeManagement.Migrations
                     b.HasOne("EmployeeManagement.Models.Employee", "Employee")
                         .WithMany("SickLeaves")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Employee");
                 });

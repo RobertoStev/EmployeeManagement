@@ -24,7 +24,7 @@ namespace EmployeeManagement.Tests.Fakes
                     Reason = "Flu",
                     MedicalReportPath = "path/to/flu_report.pdf",
                     LeavStatus = LeaveStatus.Approved,
-                    EmployeeId = 1,
+                    //EmployeeId = 1,
                     Employee = new Employee
                     {
                         EmployeeId = 1,
@@ -47,7 +47,7 @@ namespace EmployeeManagement.Tests.Fakes
                     Reason = "Back Pain",
                     MedicalReportPath = "path/to/back_pain_report.pdf",
                     LeavStatus = LeaveStatus.Pending,
-                    EmployeeId = 2,
+                    //EmployeeId = 2,
                     Employee = new Employee
                     {
                         EmployeeId = 2,

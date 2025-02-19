@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Data;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace EmployeeManagement.Services
 {
@@ -7,11 +8,13 @@ namespace EmployeeManagement.Services
         private readonly IServiceScopeFactory _scopeFactory;
         private Timer _timer;
         private readonly ILogger<LeaveManagementService> _logger;
+        private readonly IMemoryCache _cache;
 
-        public LeaveManagementService(IServiceScopeFactory scopeFactory, ILogger<LeaveManagementService> logger)
+        public LeaveManagementService(IServiceScopeFactory scopeFactory, ILogger<LeaveManagementService> logger, IMemoryCache cache)
         {
             _scopeFactory = scopeFactory;
             _logger = logger;
+            _cache = cache;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -39,7 +42,7 @@ namespace EmployeeManagement.Services
                         employee.AnnualLeaveDaysRemaining = Math.Min(employee.AnnualLeaveDaysRemaining, 11);
                         employee.BonusLeaveDaysRemaining = 0;
                         employee.FirstPartLeaveExpiry = null;
-                        employeeUpdated = true;
+                        employeeUpdated = true;                       
 
                         _logger.LogInformation("First part expired for employee with id = {Id}", employee.EmployeeId);
                     
@@ -57,6 +60,8 @@ namespace EmployeeManagement.Services
 
                     if (employeeUpdated)
                     {
+                        _cache.Remove("AllLeaveRequests");
+
                         context.Employees.Update(employee);
                         context.SaveChanges();
                     }

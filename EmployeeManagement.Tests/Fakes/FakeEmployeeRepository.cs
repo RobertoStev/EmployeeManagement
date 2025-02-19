@@ -50,8 +50,9 @@ namespace EmployeeManagement.Tests.Fakes
             return Task.CompletedTask;
         }
 
-        public Task DeleteEmployeeByIdAsync(Employee employee)
+        public Task DeleteEmployeeByIdAsync(int employeeId)
         {
+            var employee = _employees[employeeId];
             _employees.Remove(employee);
             return Task.CompletedTask;
         }

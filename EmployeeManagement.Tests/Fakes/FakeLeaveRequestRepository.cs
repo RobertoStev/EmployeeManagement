@@ -25,7 +25,7 @@ namespace EmployeeManagement.Tests.Fakes
                     Comment = "Family vacation",
                     LeaveType = LeaveType.Annual,
                     LeaveStatus = LeaveStatus.Pending,
-                    EmployeeId = 1,
+                    //EmployeeId = 1,
                     Employee = new Employee
                     {
                         EmployeeId = 1,
@@ -48,7 +48,7 @@ namespace EmployeeManagement.Tests.Fakes
                     Comment = "Dd",
                     LeaveType = LeaveType.Bonus,
                     LeaveStatus = LeaveStatus.Approved,
-                    EmployeeId = 1,
+                    //EmployeeId = 1,
                     Employee = new Employee
                     {
                         EmployeeId = 2,

@@ -27,7 +27,7 @@ namespace EmployeeManagement.Tests.Controllers
         { 
             _sickLeaveRequestRepository = new FakeSickLeaveRepository();
             _sickLeaveService = new FakeSickLeaveService();
-            _memoryCache = new MemoryCache(new MemoryCacheOptions()); // Use a real cache but ignore it
+            _memoryCache = new MemoryCache(new MemoryCacheOptions());
             _mockMapper = new Mock<IMapper>();
 
             _controller = new SickRequestController(_sickLeaveRequestRepository, _sickLeaveService, _memoryCache, _mockMapper.Object);
@@ -52,7 +52,7 @@ namespace EmployeeManagement.Tests.Controllers
                         Reason = s.Reason,
                         MedicalReportPath = s.MedicalReportPath,
                         LeavStatus = s.LeavStatus,
-                        EmployeeId = s.EmployeeId,
+                        //EmployeeId = s.EmployeeId,
                         Employee = s.Employee                     
                     }).ToList());
 

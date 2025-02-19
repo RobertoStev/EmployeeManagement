@@ -2,7 +2,6 @@
 using EmployeeManagement.DTOs;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repositories;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace EmployeeManagement.Services
 {
@@ -12,6 +11,7 @@ namespace EmployeeManagement.Services
         private readonly ILeaveRequestRepository _leaveRequestRepository;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
+
         public LeaveRequestService(ILeaveRequestRepository leaveRequestRepository, IEmployeeRepository employeeRepository,
             IMapper mapper)
         {
@@ -20,7 +20,6 @@ namespace EmployeeManagement.Services
             _mapper = mapper;
         }
 
-      
         public async Task<LeaveRequest> CreateLeaveRequestAsync(int employeeId, LeaveRequestCreateDTO leaveRequest)
         {
 
@@ -46,8 +45,8 @@ namespace EmployeeManagement.Services
             }
 
           
-            var leaveRequestToSave = _mapper.Map<LeaveRequest>(leaveRequest);
-            leaveRequestToSave.EmployeeId = employeeId;
+            var leaveRequestToSave = _mapper.Map<LeaveRequest>(leaveRequest);     
+            leaveRequestToSave.Employee = employee;
 
             await _leaveRequestRepository.AddLeaveRequestAsync(leaveRequestToSave);
 

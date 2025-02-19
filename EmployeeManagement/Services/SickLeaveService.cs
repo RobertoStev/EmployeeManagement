@@ -8,16 +8,21 @@ namespace EmployeeManagement.Services
     public class SickLeaveService : ISickLeaveService
     {
         private readonly ISickLeaveRequestRepository _sickLeaveRepository;
+        private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
-        public SickLeaveService(ISickLeaveRequestRepository sickLeaveRepository, IMapper mapper)
+
+        public SickLeaveService(ISickLeaveRequestRepository sickLeaveRepository, IEmployeeRepository employeeRepository, IMapper mapper)
         {
             _sickLeaveRepository = sickLeaveRepository;
+            _employeeRepository = employeeRepository;
             _mapper = mapper;
         }
  
         public async Task CreateSickLeaveAsync(int employeeId, SickLeaveCreateDTO sickLeave)
         {
-            string relativePath = null;
+            string relativePath = string.Empty;
+
+            var employee = await _employeeRepository.GetEmployeeByIdAsync(employeeId);        
 
             if (sickLeave.MedicalReport != null && sickLeave.MedicalReport.Length > 0)
             {
@@ -45,7 +50,7 @@ namespace EmployeeManagement.Services
             var sickLeaveToSave = _mapper.Map<SickLeave>(sickLeave);
             sickLeaveToSave.MedicalReportPath = relativePath; //Use the relative path
             sickLeaveToSave.LeavStatus = Enums.EnumTypes.LeaveStatus.Pending;
-            sickLeaveToSave.EmployeeId = employeeId;
+            sickLeaveToSave.Employee = employee;
 
             //Save to the database
             await _sickLeaveRepository.AddSickLeaveAsync(sickLeaveToSave);

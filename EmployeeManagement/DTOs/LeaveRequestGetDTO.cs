@@ -11,9 +11,6 @@ namespace EmployeeManagement.DTOs
         public string Comment { get; set; }
         public LeaveType LeaveType { get; set; }
         public LeaveStatus LeaveStatus { get; set; }
-
-
-        public int EmployeeId { get; set; } 
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
     }
 }
