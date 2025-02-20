@@ -17,7 +17,10 @@ namespace EmployeeManagement.Migrations
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    JobTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AnnualLeaveDaysRemaining = table.Column<int>(type: "int", nullable: false),
                     BonusLeaveDaysRemaining = table.Column<int>(type: "int", nullable: false),

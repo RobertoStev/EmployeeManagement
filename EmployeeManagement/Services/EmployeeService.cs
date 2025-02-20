@@ -104,12 +104,12 @@ namespace EmployeeManagement.Services
             if (employee.FirstPartLeaveExpiry == null && employee.SecondPartLeaveExpiry != null)
             {
                 //Add
-                if (employeeDto.BonusLeaveDaysRemaining >= 0)
+                if (employeeDto.BonusLeaveDaysRemaining > 0)
                 {
                     employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
                     employee.FirstPartLeaveExpiry = employee.SecondPartLeaveExpiry.Value.AddMinutes(3);
                 }
-                else //No bonus leave days to deduct
+                if(employeeDto.BonusLeaveDaysRemaining < 0) //No bonus leave days to deduct
                 {
                     throw new Exception($"This employee has {employee.BonusLeaveDaysRemaining} bonus leave days remaining!");
                 }
@@ -152,12 +152,12 @@ namespace EmployeeManagement.Services
                 }
 
                 //Add
-                if (employeeDto.AnnualLeaveDaysRemaining >= 0)
+                if (employeeDto.AnnualLeaveDaysRemaining > 0)
                 {
                     employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
                     employee.SecondPartLeaveExpiry = employee.FirstPartLeaveExpiry.Value.AddMinutes(2);
                 }
-                else //No annual leave days to deduct
+                if(employeeDto.AnnualLeaveDaysRemaining < 0) //No annual leave days to deduct
                 {
                     throw new Exception($"This employee has {employee.AnnualLeaveDaysRemaining} annual leave days remaining!");
                 }
@@ -166,9 +166,17 @@ namespace EmployeeManagement.Services
             if (employee.FirstPartLeaveExpiry == null && employee.SecondPartLeaveExpiry == null)
             {
                 //No annual and bonus days to deduct
-                if (employeeDto.AnnualLeaveDaysRemaining <= 0 && employeeDto.BonusLeaveDaysRemaining <= 0)
+                if (employeeDto.AnnualLeaveDaysRemaining < 0 && employeeDto.BonusLeaveDaysRemaining < 0)
                 {
                     throw new Exception($"This employee has 0 annual and bonus leave days remaining!");
+                }
+                if (employeeDto.AnnualLeaveDaysRemaining < 0)
+                {
+                    throw new Exception($"This employee has 0 annual leave days remaining!");
+                }
+                if(employeeDto.BonusLeaveDaysRemaining < 0)
+                {
+                    throw new Exception($"This employee has 0 bonus leave days remaining!");
                 }
 
                 //Add

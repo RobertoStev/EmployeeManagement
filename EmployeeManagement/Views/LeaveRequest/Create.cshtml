@@ -7,7 +7,9 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2 class="text-center mb-4">Create Leave Request</h2>
+            <div class="card-header bg-primary text-white text-center">
+                <h5 class="mb-0">Create Leave Request</h5>
+            </div>        
             <form asp-action="Create" method="post" class="needs-validation p-4 border rounded bg-light shadow-sm" novalidate>
                 <input type="hidden" name="EmployeeId" value="@employeeId" />
 
@@ -15,13 +17,13 @@
 
                 <div class="mb-3">
                     <label asp-for="StartDate" class="form-label fw-bold"></label>
-                    <input asp-for="StartDate" class="form-control form-control-sm" type="date" />
+                    <input asp-for="StartDate" class="form-control form-control-sm" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" id="startDate" onchange="updateEndDateMin()" />
                     <span asp-validation-for="StartDate" class="text-danger small"></span>
                 </div>
 
                 <div class="mb-3">
                     <label asp-for="EndDate" class="form-label fw-bold"></label>
-                    <input asp-for="EndDate" class="form-control form-control-sm" type="date" />
+                    <input asp-for="EndDate" class="form-control form-control-sm" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" id="endDate" />
                     <span asp-validation-for="EndDate" class="text-danger small"></span>
                 </div>
 
@@ -45,3 +47,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    function updateEndDateMin() {
+        let startDate = document.getElementById("startDate").value;
+        document.getElementById("endDate").min = startDate;
+    }
+</script>

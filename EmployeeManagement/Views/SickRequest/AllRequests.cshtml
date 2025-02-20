@@ -7,7 +7,7 @@
     int totalPages = (int)Math.Ceiling((double)totalRequests / pageSize);
 }
 
-<h2 class="text-center mb-4">Sick Leave Requests</h2>
+<h2 class="text-center mb-4">List of sick leave requests for employees</h2>
 
 <table class="table table-striped table-bordered">
     <thead class="thead-dark">
@@ -25,7 +25,11 @@
         {
             <tr class="@(request.LeavStatus == LeaveStatus.Approved ? "bg-lightblue" :
                       request.LeavStatus == LeaveStatus.Rejected ? "bg-lightcoral" : "")">
-                <td class="text-center">@(request.Employee != null ? request.Employee.Name : "Not our employee")</td>
+                <td class="text-center">
+                    @(request.Employee != null && !string.IsNullOrEmpty(request.Employee.FirstName) && !string.IsNullOrEmpty(request.Employee.LastName)
+                        ? $"{request.Employee.FirstName} {request.Employee.LastName}"
+                        : "Not our employee")
+                </td>
                 <td class="text-center">@request.StartDate.ToShortDateString()</td>
                 <td class="text-center">@request.EndDate.ToShortDateString()</td>
                 <td class="text-center">

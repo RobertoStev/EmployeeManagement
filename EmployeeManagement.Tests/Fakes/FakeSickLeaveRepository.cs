@@ -28,7 +28,10 @@ namespace EmployeeManagement.Tests.Fakes
                     Employee = new Employee
                     {
                         EmployeeId = 1,
-                        Name = "John Doe",
+                         FirstName = "John",
+                        LastName= "Doe",
+                        Department = "IT",
+                        JobTitle = "Developer",
                         Email = "john@example.com",
                         AnnualLeaveDaysRemaining = 21,  
                         BonusLeaveDaysRemaining = 0,    
@@ -51,7 +54,10 @@ namespace EmployeeManagement.Tests.Fakes
                     Employee = new Employee
                     {
                         EmployeeId = 2,
-                        Name = "Jane Smith",
+                        FirstName = "Jane",
+                        LastName= "Smith",
+                        Department = "IT",
+                        JobTitle = "Tester",
                         Email = "jane@example.com",
                         AnnualLeaveDaysRemaining = 21,  
                         BonusLeaveDaysRemaining = 0,    

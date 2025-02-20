@@ -11,25 +11,30 @@
         <div class="col-md-3 mb-4">
             <div class="card">
                 <div class="card-body text-center">
-                    <img src="~/images/@employee.Picture" alt="@employee.Name" class="rounded-circle img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;" />
-                    <h5 class="card-title mt-3">Name: @employee.Name</h5>
-                    <p class="card-text">Email: @employee.Email</p>
-                    <!--<p class="card-text">
-                        <strong>Annual Leave:</strong> @employee.AnnualLeaveDaysRemaining<br />
-                        <strong>Bonus Leave:</strong> @employee.BonusLeaveDaysRemaining<br />
-                        <strong>Created At:</strong> @employee.CreatedAt.ToShortDateString()
-                    </p>-->
+                    <img src="~/images/@employee.Picture" alt="@employee.FirstName @employee.LastName"
+                         class="rounded-circle img-thumbnail" style="width: 150px; height: 250px; object-fit: cover;" />
+                    <h5 class="card-title mt-3">@employee.FirstName @employee.LastName</h5>
+                    <p class="card-text">                   
+                        <strong>Department:</strong> @employee.Department<br>                      
+                    </p>
+
                     @if (User.IsInRole("Hr"))
-                    {
+                    {                       
                         <div class="d-grid gap-2">
-                            <a asp-action="Edit" asp-route-id="@employee.EmployeeId" asp-route-page="@ViewBag.CurrentPage"  class="btn btn-primary btn-sm">Edit</a>
+                            <a asp-action="Edit" asp-route-id="@employee.EmployeeId" asp-route-page="@ViewBag.CurrentPage"
+                               class="btn btn-outline-primary btn-sm fw-semibold shadow-sm"> ✏️Edit</a>
 
-                            <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger btn-sm"
-                               asp-route-page="@ViewBag.CurrentPage" onclick="return confirm('Are you sure you want to delete this owner?');">
-                                    Delete</a>
+                            <a asp-action="Delete" asp-route-id="@employee.EmployeeId" asp-route-page="@ViewBag.CurrentPage"
+                               class="btn btn-outline-danger btn-sm fw-semibold shadow-sm"
+                               onclick="return confirm('Are you sure you want to delete this employee?');">
+                                🗑️ Delete
+                            </a>
 
-                            <a asp-action="Details" asp-route-id="@employee.EmployeeId" asp-route-page="@ViewBag.CurrentPage"  class="btn btn-warning btn-sm">Details</a>
-                            <a asp-action="ManageDays" asp-route-id="@employee.EmployeeId" asp-route-page="@ViewBag.CurrentPage"  class="btn btn-success btn-sm">Manage Days</a>
+                            <a asp-action="Details" asp-route-id="@employee.EmployeeId" asp-route-page="@ViewBag.CurrentPage"
+                               class="btn btn-outline-secondary btn-sm fw-semibold shadow-sm"> ℹ️ Details</a>
+
+                            <a asp-action="ManageDays" asp-route-id="@employee.EmployeeId" asp-route-page="@ViewBag.CurrentPage"
+                               class="btn btn-outline-success btn-sm fw-semibold shadow-sm"> 📅 Manage Days</a>
                         </div>
                     }
                 </div>

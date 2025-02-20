@@ -15,6 +15,7 @@ namespace EmployeeManagement.AutoMapper
             CreateMap<Employee, EmployeeManageDaysDTO>();
 
             CreateMap<Employee, EmployeeEditDTO>();
+
             CreateMap<EmployeeEditDTO, Employee>();           
         }
     }

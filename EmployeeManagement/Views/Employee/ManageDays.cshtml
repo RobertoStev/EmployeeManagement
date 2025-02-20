@@ -5,14 +5,15 @@
 }
 
 <div class="container mt-5">
-    <h2 class="text-center mb-3">Manage Leave Days</h2>
-    <p class="text-center text-muted mb-4">
-        Use "-" in front of the number to deduct days; otherwise, the number will be added.
-    </p>
-
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0">Manage Leave Days</h5> <br />
+                    <p class="bg-primary text-white text-center">
+                        Use "-" in front of the number to deduct days; otherwise, the number will be added.
+                    </p>
+                </div>
                 <div class="card-body">
                     <form asp-action="ManageDays" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
@@ -37,15 +38,15 @@
                         </div>
 
                         <div class="d-grid">
-                            <input type="submit" value="Submit" asp-route-page="@currentPage" class="btn btn-primary btn-sm" />
+                            <input type="submit" value="Submit" asp-route-page="@currentPage" class="btn btn-primary" />
                         </div>
                     </form>
                 </div>
             </div>
             <div class="mt-3 text-center">
-                <a asp-action="AllEmployees" asp-route-page="@currentPage" class="btn btn-success btn-sm">
+                <a asp-action="AllEmployees" asp-route-page="@currentPage" class="btn btn-success">
                     Go Back To Employees
-                </a>
+                </a> 
             </div>
         </div>
     </div>

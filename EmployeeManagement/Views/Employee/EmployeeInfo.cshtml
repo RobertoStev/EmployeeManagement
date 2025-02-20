@@ -5,7 +5,7 @@
 }
 
 <div class="container mt-5">
-    <h1 class="mb-4">My Information</h1>
+    <h1 class="mb-4">My Informations</h1>
 
     @if (ViewData["Message"] != null)
     {
@@ -19,19 +19,20 @@
             <div class="row g-0">
                 <!-- Image Section -->
                 <div class="col-md-4 text-center">
-                    <img src="~/images/@Model.Picture" alt="@Model.Name" class="img-fluid rounded-start" style="height: 300px; object-fit: cover;">
+                    <img src="~/images/@Model.Picture" alt="@Model.FirstName @Model.LastName" class="img-fluid rounded-start" style="height: 100%; object-fit: cover;">
                 </div>
                 <!-- Details Section -->
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h2 class="card-title display-5">@Model.Name</h2>
+                        <h2 class="card-title display-5">@Model.FirstName @Model.LastName</h2>
+                        <p class="card-text fs-5"><strong>Department:</strong> @Model.Department</p>
+                        <p class="card-text fs-5"><strong>Job Title:</strong> @Model.JobTitle</p>
                         <p class="card-text fs-5"><strong>Email:</strong> @Model.Email</p>
                         <p class="card-text fs-5"><strong>Annual Leave Days:</strong> @Model.AnnualLeaveDaysRemaining</p>
                         <p class="card-text fs-5"><strong>Bonus Leave Days:</strong> @Model.BonusLeaveDaysRemaining</p>
                         <p class="card-text fs-5"><strong>Member Since:</strong> @Model.CreatedAt.ToString("MMM dd, yyyy")</p>
-                        <p class="card-text fs-5"><strong>Annual Leave Days Exire:</strong> @Model.FirstPartLeaveExpiry</p>
-                        <p class="card-text fs-5"><strong>Bonus Leave Days Exire:</strong> @Model.SecondPartLeaveExpiry</p>
-
+                        <p class="card-text fs-5"><strong>Annual Leave Days Expire:</strong> @(Model.FirstPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>
+                        <p class="card-text fs-5"><strong>Bonus Leave Days Expire:</strong> @(Model.SecondPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>
                     </div>
                 </div>
             </div>

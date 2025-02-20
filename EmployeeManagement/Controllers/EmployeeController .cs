@@ -31,7 +31,6 @@ namespace EmployeeManagement.Controllers
             return Json(roles);
         }
 
-
         [Authorize(Roles = "Hr")]
         public async Task<IActionResult> AllEmployees(int page = 1)
         {
@@ -121,7 +120,6 @@ namespace EmployeeManagement.Controllers
             return View(employeeGet);
         }
 
-
         [Authorize(Roles = "Hr")]
         public IActionResult Create()
         {
@@ -174,7 +172,6 @@ namespace EmployeeManagement.Controllers
             return RedirectToAction("AllEmployees", new { page = page });     
         }
 
-
         [Authorize(Roles = "Hr")]
         public async Task<IActionResult> ManageDays(int id, int page)
         {
@@ -214,7 +211,6 @@ namespace EmployeeManagement.Controllers
             return View(employeeDto);
         }
 
-
         [Authorize(Roles = "Hr")]
         public async Task<IActionResult> Edit(int id, int page)
         {
@@ -242,7 +238,10 @@ namespace EmployeeManagement.Controllers
 
                 _mapper.Map<Employee>(employeeDto);
 
-                employee.Name = employeeDto.Name;
+                employee.FirstName = employeeDto.FirstName;
+                employee.LastName = employeeDto.LastName;
+                employee.Department = employeeDto.Department;
+                employee.JobTitle = employeeDto.JobTitle;
 
                 await _employeeRepository.UpdateEmployeeAsync(employee);
 

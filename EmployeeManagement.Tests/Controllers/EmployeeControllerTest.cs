@@ -39,7 +39,10 @@ namespace EmployeeManagement.Tests.Controllers
             var employeeDTOs = employees.Select(e => new EmployeeGetDTO
             {
                 EmployeeId = e.EmployeeId,
-                Name = e.Name,
+                FirstName = e.FirstName,
+                LastName = e.LastName,
+                Department = e.Department,
+                JobTitle = e.JobTitle,
                 Email = e.Email,
                 AnnualLeaveDaysRemaining = e.AnnualLeaveDaysRemaining,
                 BonusLeaveDaysRemaining = e.BonusLeaveDaysRemaining,
@@ -59,7 +62,8 @@ namespace EmployeeManagement.Tests.Controllers
 
             Assert.IsNotNull(model);
             Assert.AreEqual(2, model.Count); 
-            Assert.AreEqual("John Doe", model[0].Name);
+            Assert.AreEqual("John", model[0].FirstName);
+            Assert.AreEqual("Doe", model[0].LastName);
             Assert.AreEqual(21, model[0].AnnualLeaveDaysRemaining); 
             Assert.AreEqual(21, model[1].AnnualLeaveDaysRemaining); 
 
@@ -78,11 +82,14 @@ namespace EmployeeManagement.Tests.Controllers
         public async Task Create_Post_ReturnsRedirectToAllEmployees_WhenModelIsValid()
         {
             // Arrange
-            var employeeDto = new EmployeeCreateDTO { Name = "John Doe", Email = "john@example.com" };
+            var employeeDto = new EmployeeCreateDTO { FirstName = "John", LastName = "Doe", Department ="IT", JobTitle = "Developer", Email = "john@example.com" };
        
             var employee = new Employee
             {
-                Name = "John Doe",
+                FirstName = "John",
+                LastName = "Doe",
+                Department = "IT",
+                JobTitle = "Developer",
                 Email = "john@example.com",
                 AnnualLeaveDaysRemaining = 21,
                 BonusLeaveDaysRemaining = 0,
@@ -105,8 +112,11 @@ namespace EmployeeManagement.Tests.Controllers
         public async Task Create_Post_ReturnsView_WhenModelIsInvalid()
         {
             // Arrange
-            var employeeDto = new EmployeeCreateDTO { Name = "", Email = "" }; // Invalid model
-            _controller.ModelState.AddModelError("Name", "Name is required");
+            var employeeDto = new EmployeeCreateDTO { FirstName = "", LastName = "", Department="", JobTitle="", Email = "" }; // Invalid model
+            _controller.ModelState.AddModelError("FirstName", "First Name is required");
+            _controller.ModelState.AddModelError("LastName", "Last Name is required");
+            _controller.ModelState.AddModelError("Department", "Department is required");
+            _controller.ModelState.AddModelError("JobTitle", "Job Title is required");
 
             // Act
             var result = await _controller.Create(employeeDto) as ViewResult;

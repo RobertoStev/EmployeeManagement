@@ -7,7 +7,7 @@
     int totalPages = (int)Math.Ceiling((double)totalRequests / pageSize);
 }
 
-<h2 class="text-center">List of LeaveRequests and Employees</h2>
+<h2 class="text-center">List of leave requests for employees</h2>
 <br />
 
 @if (TempData["ErrorMessage"] != null)
@@ -37,7 +37,11 @@
         {
             <tr class="@(request.LeaveStatus == LeaveStatus.Approved ? "bg-lightblue" :
             request.LeaveStatus == LeaveStatus.Rejected ? "bg-lightcoral" : "")">
-                <td class="text-center">@(request.Employee != null ? request.Employee.Name : "Not our employee")</td>
+                <td class="text-center">
+                    @(request.Employee != null && !string.IsNullOrEmpty(request.Employee.FirstName) && !string.IsNullOrEmpty(request.Employee.LastName)
+                        ? $"{request.Employee.FirstName} {request.Employee.LastName}"
+                        : "Not our employee")
+                </td>
                 <td class="text-center">@(request.Employee?.Email ?? "/")</td>
                 <td class="text-center">@(request.Employee?.AnnualLeaveDaysRemaining.ToString() ?? "/")</td>
                 <td class="text-center">@(request.Employee?.BonusLeaveDaysRemaining.ToString() ?? "/")</td>
@@ -91,3 +95,4 @@
         }
     </ul>
 </nav>
+
