@@ -93,6 +93,7 @@ namespace EmployeeManagement.Controllers
             return View(employeeGet);
         }
 
+        [Authorize(Roles = "Hr")]
         public async Task<IActionResult> Details(int id, int page)
         {
             var detailsForUser = await _employeeRepository.GetEmployeeByIdAsync(id);
@@ -110,6 +111,12 @@ namespace EmployeeManagement.Controllers
 
         public async Task<IActionResult> Requests(int id)
         {
+            string? employeeId = HttpContext.Session.GetString("EmployeeId");
+            if (string.IsNullOrEmpty(employeeId) || id.ToString() != employeeId)
+            {
+                return Redirect("/Identity/Account/AccessDenied");
+            }
+
             var employee = await _employeeRepository.GetEmployeeWithRequestsAsync(id);
             if (employee == null)
             {

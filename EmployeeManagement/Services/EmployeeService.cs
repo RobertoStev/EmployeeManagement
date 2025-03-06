@@ -49,9 +49,9 @@ namespace EmployeeManagement.Services
             // Set additional properties
             domainEmployee.AnnualLeaveDaysRemaining = 21;
             domainEmployee.BonusLeaveDaysRemaining = 0;
-            domainEmployee.CreatedAt = DateTime.Now;
-            domainEmployee.FirstPartLeaveExpiry = domainEmployee.CreatedAt.AddMinutes(3);
-            domainEmployee.SecondPartLeaveExpiry = domainEmployee.CreatedAt.AddMinutes(5);
+            domainEmployee.CreatedAt = DateTime.Today;
+            domainEmployee.FirstPartLeaveExpiry = new DateTime(domainEmployee.CreatedAt.Year, 12, 31);
+            domainEmployee.SecondPartLeaveExpiry = new DateTime(domainEmployee.CreatedAt.Year + 1, 6, 30);
 
             await _employeeRepository.AddEmployeeAsync(domainEmployee);
         }
@@ -64,7 +64,8 @@ namespace EmployeeManagement.Services
                 throw new KeyNotFoundException("Employee not found.");
             }
 
-            var now = DateTime.Now;
+            //var now = DateTime.Now;
+            var now = DateTime.Today;
 
             if(employee.FirstPartLeaveExpiry != null && employee.SecondPartLeaveExpiry != null)
             {
@@ -107,7 +108,7 @@ namespace EmployeeManagement.Services
                 if (employeeDto.BonusLeaveDaysRemaining > 0)
                 {
                     employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
-                    employee.FirstPartLeaveExpiry = employee.SecondPartLeaveExpiry.Value.AddMinutes(3);
+                    employee.FirstPartLeaveExpiry = new DateTime(now.Year, 12, 31);
                 }
                 if(employeeDto.BonusLeaveDaysRemaining < 0) //No bonus leave days to deduct
                 {
@@ -155,7 +156,7 @@ namespace EmployeeManagement.Services
                 if (employeeDto.AnnualLeaveDaysRemaining > 0)
                 {
                     employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
-                    employee.SecondPartLeaveExpiry = employee.FirstPartLeaveExpiry.Value.AddMinutes(2);
+                    employee.SecondPartLeaveExpiry = employee.FirstPartLeaveExpiry.Value.AddMonths(6);
                 }
                 if(employeeDto.AnnualLeaveDaysRemaining < 0) //No annual leave days to deduct
                 {
@@ -185,8 +186,8 @@ namespace EmployeeManagement.Services
                     employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
                     employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
 
-                    employee.FirstPartLeaveExpiry = now.AddMinutes(3);
-                    employee.SecondPartLeaveExpiry = now.AddMinutes(5);
+                    employee.FirstPartLeaveExpiry = new DateTime(now.Year, 12, 31);
+                    employee.SecondPartLeaveExpiry = new DateTime(now.Year + 1, 6, 30);
                 }
             }
 

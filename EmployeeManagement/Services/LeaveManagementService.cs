@@ -19,7 +19,7 @@ namespace EmployeeManagement.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _timer = new Timer(UpdateLeaveBalances, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+            _timer = new Timer(UpdateLeaveBalances, null, TimeSpan.Zero, TimeSpan.FromDays(1));
             return Task.CompletedTask;
         }
 
@@ -31,7 +31,8 @@ namespace EmployeeManagement.Services
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
                 var employees = context.Employees.ToList();
-                var now = DateTime.Now;
+                //var now = DateTime.Now;
+                var now = DateTime.Today;
 
                 foreach (var employee in employees)
                 {

@@ -2,14 +2,13 @@
 @{
     ViewData["Title"] = "List of all Employees";
 }
-
-<h2>List of all Employees</h2>
+<br />
 
 <div class="row">
     @foreach (var employee in Model)
     {
         <div class="col-md-3 mb-4">
-            <div class="card">
+            <div class="card bg-light shadow-sm">
                 <div class="card-body text-center">
                     <img src="~/images/@employee.Picture" alt="@employee.FirstName @employee.LastName"
                          class="rounded-circle img-thumbnail" style="width: 150px; height: 250px; object-fit: cover;" />

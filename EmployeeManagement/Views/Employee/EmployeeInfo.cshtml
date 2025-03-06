@@ -5,8 +5,7 @@
 }
 
 <div class="container mt-5">
-    <h1 class="mb-4">My Informations</h1>
-
+    
     @if (ViewData["Message"] != null)
     {
         <div class="alert alert-info">
@@ -18,7 +17,7 @@
         <div class="card shadow-sm">
             <div class="row g-0">
                 <!-- Image Section -->
-                <div class="col-md-4 text-center">
+                <div class="col-md-4 text-center bg-light shadow-sm">
                     <img src="~/images/@Model.Picture" alt="@Model.FirstName @Model.LastName" class="img-fluid rounded-start" style="height: 100%; object-fit: cover;">
                 </div>
                 <!-- Details Section -->
@@ -31,8 +30,8 @@
                         <p class="card-text fs-5"><strong>Annual Leave Days:</strong> @Model.AnnualLeaveDaysRemaining</p>
                         <p class="card-text fs-5"><strong>Bonus Leave Days:</strong> @Model.BonusLeaveDaysRemaining</p>
                         <p class="card-text fs-5"><strong>Member Since:</strong> @Model.CreatedAt.ToString("MMM dd, yyyy")</p>
-                        <p class="card-text fs-5"><strong>Annual Leave Days Expire:</strong> @(Model.FirstPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>
-                        <p class="card-text fs-5"><strong>Bonus Leave Days Expire:</strong> @(Model.SecondPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>
+                        <p class="card-text fs-5"><strong>Annual Leave Days Expire:</strong> @(Model.SecondPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>
+                        <p class="card-text fs-5"><strong>Bonus Leave Days Expire:</strong> @(Model.FirstPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>
                     </div>
                 </div>
             </div>

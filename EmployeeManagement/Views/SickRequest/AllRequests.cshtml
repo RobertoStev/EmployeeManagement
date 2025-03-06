@@ -1,23 +1,26 @@
 ﻿@model IEnumerable<EmployeeManagement.DTOs.SickLeaveGetDTO>
 @using static EmployeeManagement.Enums.EnumTypes
 @{
+    ViewData["Title"] = "List of Sick Requests";
     int currentPage = ViewBag.CurrentPage;
     int pageSize = ViewBag.PageSize;
     int totalRequests = ViewBag.TotalRequests;
     int totalPages = (int)Math.Ceiling((double)totalRequests / pageSize);
 }
 
-<h2 class="text-center mb-4">List of sick leave requests for employees</h2>
+<br />
 
 <table class="table table-striped table-bordered">
-    <thead class="thead-dark">
+    <thead class="table-dark">
         <tr>
-            <th class="text-center">Employee Name</th>
-            <th class="text-center">Start Date</th>
-            <th class="text-center">End Date</th>
-            <th class="text-center">Medical Documentation</th>
-            <th class="text-center">Status</th>
-            <th class="text-center">Actions</th>
+            <th class="text-center align-middle">Employee Name</th>
+            <th class="text-center align-middle">Email</th>
+            <th class="text-center align-middle">Start Date</th>
+            <th class="text-center align-middle">End Date</th>
+            <th class="text-center align-middle">Medical Documentation</th>
+            <th class="text-center align-middle">Reason</th>
+            <th class="text-center align-middle">Status</th>
+            <th class="text-center align-middle">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -25,14 +28,15 @@
         {
             <tr class="@(request.LeavStatus == LeaveStatus.Approved ? "bg-lightblue" :
                       request.LeavStatus == LeaveStatus.Rejected ? "bg-lightcoral" : "")">
-                <td class="text-center">
+                <td class="text-center align-middle">
                     @(request.Employee != null && !string.IsNullOrEmpty(request.Employee.FirstName) && !string.IsNullOrEmpty(request.Employee.LastName)
                         ? $"{request.Employee.FirstName} {request.Employee.LastName}"
                         : "Not our employee")
                 </td>
-                <td class="text-center">@request.StartDate.ToShortDateString()</td>
-                <td class="text-center">@request.EndDate.ToShortDateString()</td>
-                <td class="text-center">
+                <td class="text-center align-middle">@(request.Employee?.Email ?? "/")</td>
+                <td class="text-center align-middle">@request.StartDate.ToShortDateString()</td>
+                <td class="text-center align-middle">@request.EndDate.ToShortDateString()</td>
+                <td class="text-center align-middle">
                     @if (!string.IsNullOrEmpty(request.MedicalReportPath))
                     {
                         <a href="@request.MedicalReportPath" target="_blank">View</a>
@@ -43,16 +47,19 @@
                     }
                 </td>
 
-                <td class="text-center">
+                <td class="text-center align-middle">@request.Reason</td>
+                <td class="text-center align-middle">
                     <span class="@(request.LeavStatus == LeaveStatus.Pending ? "badge bg-secondary fw-bold p-1" : "")">
                         @request.LeavStatus
                     </span>
                 </td>
-                <td class="text-center">
+                <td class="text-center align-middle">
                     @if (User.IsInRole("Hr") && request.LeavStatus == LeaveStatus.Pending)
                     {
-                        <a asp-action="Approve" asp-route-id="@request.SickLeaveId" asp-route-page="@ViewBag.CurrentPage" class="btn btn-primary btn-sm">Approve</a>
-                        <a asp-action="Decline" asp-route-id="@request.SickLeaveId" asp-route-page="@ViewBag.CurrentPage" class="btn btn-danger btn-sm">Decline</a>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a asp-action="Approve" asp-route-id="@request.SickLeaveId" asp-route-page="@ViewBag.CurrentPage" class="btn btn-primary btn-sm">Approve</a>
+                            <a asp-action="Decline" asp-route-id="@request.SickLeaveId" asp-route-page="@ViewBag.CurrentPage" class="btn btn-danger btn-sm">Decline</a>
+                        </div>
                     }
                 </td>
             </tr>

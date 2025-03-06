@@ -1,4 +1,5 @@
 using EmployeeManagement.Models;
+using EmployeeManagement.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,10 +9,12 @@ namespace EmployeeManagement.Controllers
     public class InfoController : Controller
     {
         private readonly ILogger<InfoController> _logger;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public InfoController(ILogger<InfoController> logger)
+        public InfoController(ILogger<InfoController> logger, IEmployeeRepository employeeRepository)
         {
             _logger = logger;
+            _employeeRepository = employeeRepository;
         }
 
         public IActionResult Index()
@@ -26,8 +29,17 @@ namespace EmployeeManagement.Controllers
         }
 
         [Authorize]
-        public IActionResult HomePage()
+        public async Task<IActionResult> HomePage()
         {
+            var userEmail = User.Identity.Name;
+            if (userEmail == null)
+            {
+                return NotFound();
+            }
+
+            var loggedInUser = await _employeeRepository.GetEmployeeByEmailAsync(userEmail);
+            HttpContext.Session.SetString("EmployeeId", loggedInUser.EmployeeId.ToString());
+
             return View();
         }
 

@@ -6,12 +6,11 @@
 }
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Employee Details</h1>
 
     <div class="card shadow-sm">
         <div class="row g-0">
             <!-- Employee Image Column -->
-            <div class="col-md-4 text-center p-3">
+            <div class="col-md-4 text-center p-3 bg-light shadow-sm">
                 <img src="~/images/@Model.Picture" alt="@Model.FirstName @Model.LastName"
                      class="img-fluid rounded"
                      style="height: 100%; object-fit: cover;">
@@ -32,8 +31,8 @@
                     <p class="card-text fs-5">
                         <strong>Created At:</strong> @Model.CreatedAt.ToString("MMM dd, yyyy")
                     </p>
-                    <p class="card-text fs-5"><strong>Annual Leave Days Expire:</strong> @(Model.FirstPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>
-                    <p class="card-text fs-5"><strong>Bonus Leave Days Expire:</strong> @(Model.SecondPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>                   
+                    <p class="card-text fs-5"><strong>Annual Leave Days Expire:</strong> @(Model.SecondPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>
+                    <p class="card-text fs-5"><strong>Bonus Leave Days Expire:</strong> @(Model.FirstPartLeaveExpiry?.ToString("MMM dd, yyyy") ?? "Expired")</p>                   
                 </div>
             </div>
         </div>
