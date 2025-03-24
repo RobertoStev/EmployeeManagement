@@ -60,7 +60,9 @@ namespace EmployeeManagement.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create(int employeeId, LeaveRequestCreateDTO leaveRequest)
-        { 
+        {
+            leaveRequest.LeaveStatus = Enums.EnumTypes.LeaveStatus.Pending;
+
             if (ModelState.IsValid)
             {
                 try

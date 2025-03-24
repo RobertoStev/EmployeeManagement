@@ -65,6 +65,8 @@ namespace EmployeeManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(int employeeId, SickLeaveCreateDTO sickLeave)
         {
+            sickLeave.LeaveStatus = Enums.EnumTypes.LeaveStatus.Pending;
+
             if (ModelState.IsValid)
             { 
                 await _sickLeaveService.CreateSickLeaveAsync(employeeId, sickLeave);

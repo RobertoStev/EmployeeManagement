@@ -7,5 +7,6 @@ namespace EmployeeManagement.Services
     {
         Task MangeDaysForEmployeeAsync(EmployeeManageDaysDTO employeeDto);
         Task CreateEmployeeAsync(EmployeeCreateDTO employee, string imagesFolderPath);
+        Task EditEmployeeAsync(EmployeeEditDTO employeeDto);
     }
 }

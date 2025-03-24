@@ -17,6 +17,11 @@ namespace EmployeeManagement.Tests.Fakes
             return Task.CompletedTask;
         }
 
+        public Task EditEmployeeAsync(EmployeeEditDTO employeeDto)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task MangeDaysForEmployeeAsync(EmployeeManageDaysDTO employeeDto)
         {  
             return Task.CompletedTask;

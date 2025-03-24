@@ -59,7 +59,7 @@ namespace EmployeeManagement.Services
         public async Task MangeDaysForEmployeeAsync(EmployeeManageDaysDTO employeeDto)
         {
             var employee = await _employeeRepository.GetEmployeeByIdAsync(employeeDto.EmployeeId);
-            if(employee == null)
+            if (employee == null)
             {
                 throw new KeyNotFoundException("Employee not found.");
             }
@@ -67,15 +67,15 @@ namespace EmployeeManagement.Services
             //var now = DateTime.Now;
             var now = DateTime.Today;
 
-            if(employee.FirstPartLeaveExpiry != null && employee.SecondPartLeaveExpiry != null)
+            if (employee.FirstPartLeaveExpiry != null && employee.SecondPartLeaveExpiry != null)
             {
                 //Add
-                if(employeeDto.BonusLeaveDaysRemaining >= 0)
+                if (employeeDto.BonusLeaveDaysRemaining >= 0)
                     employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
                 else //Deduct
                 {
                     var deductDays = employee.BonusLeaveDaysRemaining + employeeDto.BonusLeaveDaysRemaining;
-                    if(deductDays < 0)
+                    if (deductDays < 0)
                     {
                         throw new Exception($"This employee has {employee.BonusLeaveDaysRemaining} bonus leave days you can't deduct him {employeeDto.BonusLeaveDaysRemaining}!");
                     }
@@ -110,7 +110,7 @@ namespace EmployeeManagement.Services
                     employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
                     employee.FirstPartLeaveExpiry = new DateTime(now.Year, 12, 31);
                 }
-                if(employeeDto.BonusLeaveDaysRemaining < 0) //No bonus leave days to deduct
+                if (employeeDto.BonusLeaveDaysRemaining < 0) //No bonus leave days to deduct
                 {
                     throw new Exception($"This employee has {employee.BonusLeaveDaysRemaining} bonus leave days remaining!");
                 }
@@ -158,7 +158,7 @@ namespace EmployeeManagement.Services
                     employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
                     employee.SecondPartLeaveExpiry = employee.FirstPartLeaveExpiry.Value.AddMonths(6);
                 }
-                if(employeeDto.AnnualLeaveDaysRemaining < 0) //No annual leave days to deduct
+                if (employeeDto.AnnualLeaveDaysRemaining < 0) //No annual leave days to deduct
                 {
                     throw new Exception($"This employee has {employee.AnnualLeaveDaysRemaining} annual leave days remaining!");
                 }
@@ -175,7 +175,7 @@ namespace EmployeeManagement.Services
                 {
                     throw new Exception($"This employee has 0 annual leave days remaining!");
                 }
-                if(employeeDto.BonusLeaveDaysRemaining < 0)
+                if (employeeDto.BonusLeaveDaysRemaining < 0)
                 {
                     throw new Exception($"This employee has 0 bonus leave days remaining!");
                 }
@@ -190,6 +190,24 @@ namespace EmployeeManagement.Services
                     employee.SecondPartLeaveExpiry = new DateTime(now.Year + 1, 6, 30);
                 }
             }
+
+            await _employeeRepository.UpdateEmployeeAsync(employee);
+        }
+
+        public async Task EditEmployeeAsync(EmployeeEditDTO employeeDto)
+        {
+            var employee = await _employeeRepository.GetEmployeeByIdAsync(employeeDto.EmployeeId);
+            if (employee == null)
+            {
+                throw new KeyNotFoundException("Employee not found.");
+            }
+
+            _mapper.Map<Employee>(employeeDto);
+
+            employee.FirstName = employeeDto.FirstName;
+            employee.LastName = employeeDto.LastName;
+            employee.Department = employeeDto.Department;
+            employee.JobTitle = employeeDto.JobTitle;
 
             await _employeeRepository.UpdateEmployeeAsync(employee);
         }

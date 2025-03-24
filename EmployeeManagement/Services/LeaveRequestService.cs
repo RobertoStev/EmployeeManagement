@@ -22,13 +22,10 @@ namespace EmployeeManagement.Services
 
         public async Task<LeaveRequest> CreateLeaveRequestAsync(int employeeId, LeaveRequestCreateDTO leaveRequest)
         {
-
-            leaveRequest.LeaveStatus = Enums.EnumTypes.LeaveStatus.Pending;
-
             var employee = await _employeeRepository.GetEmployeeByIdAsync(employeeId);
             if (employee == null)
             {
-                return null; //Employee not found
+                throw new Exception("Employee not found."); //Employee not found
             }
 
             var employeeAnnualDays = employee.AnnualLeaveDaysRemaining;

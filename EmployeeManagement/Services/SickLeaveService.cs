@@ -48,8 +48,7 @@ namespace EmployeeManagement.Services
 
             //Map DTO to entity and set additional properties
             var sickLeaveToSave = _mapper.Map<SickLeave>(sickLeave);
-            sickLeaveToSave.MedicalReportPath = relativePath; //Use the relative path
-            sickLeaveToSave.LeavStatus = Enums.EnumTypes.LeaveStatus.Pending;
+            sickLeaveToSave.MedicalReportPath = relativePath; //Use the relative path          
             sickLeaveToSave.Employee = employee;
 
             //Save to the database

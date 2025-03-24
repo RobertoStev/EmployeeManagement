@@ -71,7 +71,7 @@ namespace EmployeeManagement.Controllers
         public async Task<IActionResult> EmployeeInfo()
         {
             var userEmail = User.Identity.Name;
-            if(userEmail == null)
+            if (userEmail == null)
             {
                 return NotFound();
             }
@@ -196,7 +196,7 @@ namespace EmployeeManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> ManageDays(EmployeeManageDaysDTO employeeDto, int page)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -222,7 +222,7 @@ namespace EmployeeManagement.Controllers
         public async Task<IActionResult> Edit(int id, int page)
         {
             var employee = await _employeeRepository.GetEmployeeByIdAsync(id);
-            if(employee == null)
+            if (employee == null)
             {
                 return NotFound();
             }
@@ -237,24 +237,23 @@ namespace EmployeeManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var employee = await _employeeRepository.GetEmployeeByIdAsync(employeeDto.EmployeeId);
-                if (employee == null)
+                try
                 {
-                    return NotFound();
+                    await _employeeService.EditEmployeeAsync(employeeDto);
+
+                    _cache.Remove("AllEmployees");
+                    
+                    _cache.Remove("AllLeaveRequests");
+                   
+                    _cache.Remove("AllSickLeaves");
+
+                    return RedirectToAction("AllEmployees", new { page = page });
                 }
-
-                _mapper.Map<Employee>(employeeDto);
-
-                employee.FirstName = employeeDto.FirstName;
-                employee.LastName = employeeDto.LastName;
-                employee.Department = employeeDto.Department;
-                employee.JobTitle = employeeDto.JobTitle;
-
-                await _employeeRepository.UpdateEmployeeAsync(employee);
-
-                _cache.Remove("AllEmployees");
-
-                return RedirectToAction("AllEmployees", new { page = page });
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View(employeeDto);
+                }                
             }
             return View(employeeDto);
         }
