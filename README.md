@@ -91,3 +91,22 @@
 
 ![Image](https://github.com/user-attachments/assets/1e6c955a-11cc-4363-81a0-5f5ed45926b4)
 
+<p>HR can also see all the leave requests created by the employees in the <b>All Leave Requests</b> section. HR can Approve or Decline a request. If the request is Approved the whole row is colored in light blue, conservly if the request is Declined the row is colored in light red. </p>
+
+![Image](https://github.com/user-attachments/assets/83104fae-082a-4258-b585-8d5867c5fc93)
+
+![Image](https://github.com/user-attachments/assets/1a03f57d-69ae-46b3-b858-3d25d785fa61)
+
+<p>HR can also see all the sick requests created by the employees in the <b>All Sick Requests</b> section. HR can Approve or Decline a sick request. If the sick request is Approved the whole row is colored in light blue, conversely if the sick request is Declined the row is colored in light red. The employees can log in into their account and see the status of their sick requests.</p>
+
+![Image](https://github.com/user-attachments/assets/a4878808-bcea-41fa-a632-ad2f5487b68a)
+
+![Image](https://github.com/user-attachments/assets/7cc2e3bb-826b-40f2-9c4f-82940a6ff5db)
+
+<p>They employees can log in into their account and see the status of their requests.</p>
+
+![Image](https://github.com/user-attachments/assets/f383cd91-a043-4a23-87cd-da7edc45a1f8)
+
+![Image](https://github.com/user-attachments/assets/9bbce640-b3a6-42ad-8715-7eda49204b7e)
+
+
