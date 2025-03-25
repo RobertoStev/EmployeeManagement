@@ -42,3 +42,8 @@
 </p>
 
 ![Image](https://github.com/user-attachments/assets/da835275-9a83-4ec8-a5e0-34103f4a81f9)
+
+<p>Once a leave request is created, it will be added to the employee's <b>My Requests</b> tab with a Pending status, displaying all relevant details about the request.</p>
+
+![Image](https://github.com/user-attachments/assets/ec1526e8-0a2a-43c1-83b8-23bb838367c1)
+
