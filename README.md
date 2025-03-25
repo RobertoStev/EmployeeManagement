@@ -47,3 +47,18 @@
 
 ![Image](https://github.com/user-attachments/assets/ec1526e8-0a2a-43c1-83b8-23bb838367c1)
 
+<p>In addition to standard leave requests, employees can also submit sick leave requests in the <b>Sick Request</b> tab. To do so, they must:</p>
+<ul>
+  <li>Select a start date and end date (end date cannot be earlier than the start date).</li>
+  <li>Provide a brief reason for the sick leave (e.g. "Flu recovery").</li>
+  <li>Attach a medical report file.</li>
+</ul>
+<p>If any required field is left blank, the system will display an error message, and the request will not be submitted.</p>
+
+![Image](https://github.com/user-attachments/assets/c8d7281e-2b0a-454c-9704-324fb8734581)
+
+<p>Once a sick leave request is submitted, it will appear in the "My Requests" tab under the "Sick Leaves" table. The status of their request is Pending and there is View button where the employee can review his medical report attached for that sick request</p>
+
+![Image](https://github.com/user-attachments/assets/4209010b-388b-490a-804c-18870234d702)
+
+
