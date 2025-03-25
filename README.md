@@ -61,4 +61,11 @@
 
 ![Image](https://github.com/user-attachments/assets/4209010b-388b-490a-804c-18870234d702)
 
+<h2><b>HR's View</b></h2>
 
+<p>HR personnel have access to all standard employee features (including the My Info and My Requests tabs), along with additional administrative access to view all employees in the system and manage all leave and sick leave requests.</p>
+<p>In addition to standard employee access, HR personnel can view all registered employees in the <b>All Employees Info</b> section. This includes each employee’s profile picture, along with options to edit, delete, view details, and manage leave days for every employee in the system.</p>
+
+![Image](https://github.com/user-attachments/assets/c8dfa113-52a9-4397-a913-6e3340a5fed4)
+
+![Image](https://github.com/user-attachments/assets/a1e1a219-be86-49c0-818f-473254b121c1)
