@@ -109,4 +109,9 @@
 
 ![Image](https://github.com/user-attachments/assets/9bbce640-b3a6-42ad-8715-7eda49204b7e)
 
+<p>HR can also delete employee from the system. When employee is deleted all the requests created by that employee that are Approved will stay in the system, but the requests that are Pending or Declined will be removed from the system.</p>
+<p>Let's say we delete the employee Sophia Bennett. Now let's check both the Leave Requests and Sick Requests tables to see what happened to her requests.</p>
 
+![Image](https://github.com/user-attachments/assets/8d6c50bb-5d74-4b14-832c-6e259a4e48bf)
+
+![Image](https://github.com/user-attachments/assets/f0b2919e-a23d-45aa-83d6-cc56e1f91d89)
