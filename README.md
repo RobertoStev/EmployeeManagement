@@ -69,3 +69,11 @@
 ![Image](https://github.com/user-attachments/assets/c8dfa113-52a9-4397-a913-6e3340a5fed4)
 
 ![Image](https://github.com/user-attachments/assets/a1e1a219-be86-49c0-818f-473254b121c1)
+
+<p>HR personnel can add new employees to the system in the <b>New Employee</b> section by entering the following details: First name, Last name, Department, Job title, Email, A valid profile image</p>
+<p>Once created, the new employee will appear in the <b>All Employees Info</b> section alongside all other registered employees.</p>
+
+![Image](https://github.com/user-attachments/assets/80f51891-1051-47fd-b2b9-4087f85faf1c)
+
+![Image](https://github.com/user-attachments/assets/1e6c955a-11cc-4363-81a0-5f5ed45926b4)
+
