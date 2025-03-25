@@ -25,7 +25,7 @@ namespace EmployeeManagement.Services
             var employee = await _employeeRepository.GetEmployeeByIdAsync(employeeId);
             if (employee == null)
             {
-                throw new Exception("Employee not found."); //Employee not found
+                throw new Exception("Employee not found.");
             }
 
             var employeeAnnualDays = employee.AnnualLeaveDaysRemaining;

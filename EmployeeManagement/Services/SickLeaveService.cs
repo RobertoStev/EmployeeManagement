@@ -26,17 +26,17 @@ namespace EmployeeManagement.Services
 
             if (sickLeave.MedicalReport != null && sickLeave.MedicalReport.Length > 0)
             {
-                //Define the uploads folder inside wwwroot
+                // Define the uploads folder inside wwwroot
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-                Directory.CreateDirectory(uploadsFolder); //Ensure the folder exists
+                Directory.CreateDirectory(uploadsFolder); // Ensure the folder exists
 
-                //Generate a unique file name to avoid conflicts
+                // Generate a unique file name to avoid conflicts
                 var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(sickLeave.MedicalReport.FileName);
 
-                //Full file path for saving
+                // Full file path for saving
                 var fullPath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                //Save the file
+                // Save the file
                 using (var stream = System.IO.File.Create(fullPath))
                 {
                     await sickLeave.MedicalReport.CopyToAsync(stream);
@@ -46,12 +46,11 @@ namespace EmployeeManagement.Services
                 relativePath = $"/uploads/{uniqueFileName}";
             }
 
-            //Map DTO to entity and set additional properties
+            // Map DTO to entity and set additional properties
             var sickLeaveToSave = _mapper.Map<SickLeave>(sickLeave);
-            sickLeaveToSave.MedicalReportPath = relativePath; //Use the relative path          
+            sickLeaveToSave.MedicalReportPath = relativePath;    
             sickLeaveToSave.Employee = employee;
 
-            //Save to the database
             await _sickLeaveRepository.AddSickLeaveAsync(sickLeaveToSave);
         }
         public async Task<bool> ApproveSickLeaveAsync(int id)

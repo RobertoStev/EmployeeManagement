@@ -39,7 +39,6 @@ namespace EmployeeManagement.Controllers
 
             if (!_cache.TryGetValue(cacheKey, out List<Employee> employees))
             {
-                // Cache miss: Fetch data from the repository
                 employees = await _employeeRepository.GetAllEmployeesAsync();
 
                 // Set cache options
@@ -53,7 +52,6 @@ namespace EmployeeManagement.Controllers
                 _cache.Set(cacheKey, employees, cacheOptions);
             }
 
-            // Paginate the employees
             var paginatedEmployees = employees
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -82,8 +80,8 @@ namespace EmployeeManagement.Controllers
             if (loggedInUser == null)
             {
                 HttpContext.Session.Clear();
-                ViewData["Message"] = "Successful login. Please wait until the HR employee add you to their system.";
-                return View(); // Render the view with the message
+                ViewData["Message"] = "Successful login. Please wait until an HR employee adds you to their system.";
+                return View();
             }
 
             // If the employee exists, store the EmployeeId in the session
@@ -170,10 +168,8 @@ namespace EmployeeManagement.Controllers
 
             _cache.Remove("AllEmployees");
 
-            //Remove the LeaveRequests cache
             _cache.Remove("AllLeaveRequests");
 
-            //Remove the SickLeaves cache
             _cache.Remove("AllSickLeaves");
 
             return RedirectToAction("AllEmployees", new { page = page });     

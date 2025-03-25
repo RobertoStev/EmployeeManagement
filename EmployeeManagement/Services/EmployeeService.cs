@@ -64,15 +64,15 @@ namespace EmployeeManagement.Services
                 throw new KeyNotFoundException("Employee not found.");
             }
 
-            //var now = DateTime.Now;
+            // var now = DateTime.Now;
             var now = DateTime.Today;
 
             if (employee.FirstPartLeaveExpiry != null && employee.SecondPartLeaveExpiry != null)
             {
-                //Add
+                // Add
                 if (employeeDto.BonusLeaveDaysRemaining >= 0)
                     employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
-                else //Deduct
+                else // Deduct
                 {
                     var deductDays = employee.BonusLeaveDaysRemaining + employeeDto.BonusLeaveDaysRemaining;
                     if (deductDays < 0)
@@ -85,10 +85,10 @@ namespace EmployeeManagement.Services
                     }
                 }
 
-                //Add
+                // Add
                 if (employeeDto.AnnualLeaveDaysRemaining >= 0)
                     employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
-                else //Deduct
+                else // Deduct
                 {
                     var deductDays = employee.AnnualLeaveDaysRemaining + employeeDto.AnnualLeaveDaysRemaining;
                     if (deductDays < 0)
@@ -104,23 +104,23 @@ namespace EmployeeManagement.Services
 
             if (employee.FirstPartLeaveExpiry == null && employee.SecondPartLeaveExpiry != null)
             {
-                //Add
+                // Add
                 if (employeeDto.BonusLeaveDaysRemaining > 0)
                 {
                     employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
                     employee.FirstPartLeaveExpiry = new DateTime(now.Year, 12, 31);
                 }
-                if (employeeDto.BonusLeaveDaysRemaining < 0) //No bonus leave days to deduct
+                if (employeeDto.BonusLeaveDaysRemaining < 0) // No bonus leave days to deduct
                 {
                     throw new Exception($"This employee has {employee.BonusLeaveDaysRemaining} bonus leave days remaining!");
                 }
 
-                //Add
+                // Add
                 if (employeeDto.AnnualLeaveDaysRemaining >= 0)
                 {
                     employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
                 }
-                else //Deduct
+                else // Deduct
                 {
                     var deductDays = employee.AnnualLeaveDaysRemaining + employeeDto.AnnualLeaveDaysRemaining;
                     if (deductDays < 0)
@@ -136,10 +136,10 @@ namespace EmployeeManagement.Services
 
             if (employee.FirstPartLeaveExpiry != null && employee.SecondPartLeaveExpiry == null)
             {
-                //Add
+                // Add
                 if (employeeDto.BonusLeaveDaysRemaining >= 0)
                     employee.BonusLeaveDaysRemaining += employeeDto.BonusLeaveDaysRemaining;
-                else //Deduct
+                else // Deduct
                 {
                     var deductDays = employee.BonusLeaveDaysRemaining + employeeDto.BonusLeaveDaysRemaining;
                     if (deductDays < 0)
@@ -152,13 +152,13 @@ namespace EmployeeManagement.Services
                     }
                 }
 
-                //Add
+                // Add
                 if (employeeDto.AnnualLeaveDaysRemaining > 0)
                 {
                     employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
                     employee.SecondPartLeaveExpiry = employee.FirstPartLeaveExpiry.Value.AddMonths(6);
                 }
-                if (employeeDto.AnnualLeaveDaysRemaining < 0) //No annual leave days to deduct
+                if (employeeDto.AnnualLeaveDaysRemaining < 0) // No annual leave days to deduct
                 {
                     throw new Exception($"This employee has {employee.AnnualLeaveDaysRemaining} annual leave days remaining!");
                 }
@@ -166,7 +166,7 @@ namespace EmployeeManagement.Services
 
             if (employee.FirstPartLeaveExpiry == null && employee.SecondPartLeaveExpiry == null)
             {
-                //No annual and bonus days to deduct
+                // No annual and bonus days to deduct
                 if (employeeDto.AnnualLeaveDaysRemaining < 0 && employeeDto.BonusLeaveDaysRemaining < 0)
                 {
                     throw new Exception($"This employee has 0 annual and bonus leave days remaining!");
@@ -180,7 +180,7 @@ namespace EmployeeManagement.Services
                     throw new Exception($"This employee has 0 bonus leave days remaining!");
                 }
 
-                //Add
+                // Add
                 if (employeeDto.AnnualLeaveDaysRemaining > 0 || employeeDto.BonusLeaveDaysRemaining > 0)
                 {
                     employee.AnnualLeaveDaysRemaining += employeeDto.AnnualLeaveDaysRemaining;
