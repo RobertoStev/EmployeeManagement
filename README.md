@@ -70,6 +70,20 @@
 
 ![Image](https://github.com/user-attachments/assets/a1e1a219-be86-49c0-818f-473254b121c1)
 
+<p>HR personnel can: View employee details, Edit employee information, Delete employee and Manage leave days for employees</p>
+
+![Image](https://github.com/user-attachments/assets/79770c7e-926f-49ac-877d-2b5eca4d6239)
+
+![Image](https://github.com/user-attachments/assets/7644e306-c002-420f-8162-9e21424469b5)
+
+![Image](https://github.com/user-attachments/assets/43e56af1-ad3c-4d10-b343-10045a89fe91)
+
+![Image](https://github.com/user-attachments/assets/14d6863b-895c-4fd8-b886-7552caab21ae)
+
+<p>HR added 4 annual days and 5 bonus days for this empoyee</p>
+
+![Image](https://github.com/user-attachments/assets/009c103c-88ba-43b7-bd3b-9c8723adffb8)
+
 <p>HR personnel can add new employees to the system in the <b>New Employee</b> section by entering the following details: First name, Last name, Department, Job title, Email, A valid profile image</p>
 <p>Once created, the new employee will appear in the <b>All Employees Info</b> section alongside all other registered employees.</p>
 
