@@ -25,11 +25,11 @@
 
 <p>Once added, the user can log in and access their account. In the <b>My Info</b> tab, users can view their personal details, including their full name, department, job title, email, remaining annual and bonus leave days, and their expiration dates. Every new employee starts with 21 annual leave days by default.</p>
 
-![Image](https://github.com/user-attachments/assets/cedadcd2-14bb-4c46-abb7-6650022e3c22)
+![Image](https://github.com/user-attachments/assets/321db116-08a2-41e2-bb0a-c7a261696cf7)
 
 <p>In the <b>My Requests</b> tab, logged-in employees can view their leave requests and sick leave records. If no requests have been made yet, the page will indicate that there are none.</p>
 
-![Image](https://github.com/user-attachments/assets/0c218bb7-2f0b-4dfb-ab90-aa74331e9864)
+![Image](https://github.com/user-attachments/assets/a19ba336-020d-4a06-ad23-968fad12e3ce)
 
 <p>In the <b>Leave Request</b> tab, employees can submit leave requests. Each employee can have multiple leave requests, forming a one-to-many relationship. To submit a request, the employee must:
 </p>
@@ -41,11 +41,11 @@
 <p>If the employee lacks sufficient leave days or leaves any required fields blank, an error message will appear, and the request will not be processed.
 </p>
 
-![Image](https://github.com/user-attachments/assets/da835275-9a83-4ec8-a5e0-34103f4a81f9)
+![Image](https://github.com/user-attachments/assets/aca215b2-b9ae-4fe1-ac2b-2dfc955cffeb)
 
 <p>Once a leave request is created, it will be added to the employee's <b>My Requests</b> tab under the <b>Leave Requests</b> table with a Pending status, displaying all relevant details about the request.</p>
 
-![Image](https://github.com/user-attachments/assets/ec1526e8-0a2a-43c1-83b8-23bb838367c1)
+![Image](https://github.com/user-attachments/assets/2df72e74-f6de-4f39-b6c2-22a7b69548d6)
 
 <p>In addition to standard leave requests, employees can also submit one or more sick leave requests in the <b>Sick Request</b> tab. To do so, they must:</p>
 <ul>
@@ -55,11 +55,11 @@
 </ul>
 <p>If any required field is left blank, the system will display an error message, and the request will not be submitted.</p>
 
-![Image](https://github.com/user-attachments/assets/c8d7281e-2b0a-454c-9704-324fb8734581)
+![Image](https://github.com/user-attachments/assets/744d9c1a-e67d-4ae4-a03a-76d7c48529d1)
 
 <p>Once a sick leave request is submitted, it will appear in the <b>My Requests</b> tab under the <b>Sick Leaves</b> table. The status of their request is Pending and there is View button where the employee can review his medical report attached for that sick request.</p>
 
-![Image](https://github.com/user-attachments/assets/4209010b-388b-490a-804c-18870234d702)
+![Image](https://github.com/user-attachments/assets/02c093e9-fad3-4ca3-94ef-5cade009db45)
 
 <h2><b>HR's View</b></h2>
 
