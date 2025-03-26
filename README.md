@@ -47,7 +47,7 @@
 
 ![Image](https://github.com/user-attachments/assets/ec1526e8-0a2a-43c1-83b8-23bb838367c1)
 
-<p>In addition to standard leave requests, employees can also submit one or many sick leave requests in the <b>Sick Request</b> tab. To do so, they must:</p>
+<p>In addition to standard leave requests, employees can also submit one or more sick leave requests in the <b>Sick Request</b> tab. To do so, they must:</p>
 <ul>
   <li>Select a start date and end date (end date cannot be earlier than the start date).</li>
   <li>Provide a brief reason for the sick leave (e.g. "Flu recovery").</li>
@@ -63,7 +63,7 @@
 
 <h2><b>HR's View</b></h2>
 
-<p>HR personnel have access to all standard employee features (including the My Info and My Requests tabs), along with additional administrative access to view all employees in the system and manage all leave and sick leave requests.</p>
+<p>HR personnel have access to all standard employee features (including the <b>My Info</b> and <b>My Requests</b> tabs), along with additional administrative access to view all employees in the system and manage all leave and sick leave requests.</p>
 <p>In addition to standard employee access, HR personnel can view all registered employees in the <b>All Employees Info</b> section. This includes each employee’s profile picture, along with options to edit, delete, view details, and manage leave days for every employee in the system.</p>
 
 ![Image](https://github.com/user-attachments/assets/c8dfa113-52a9-4397-a913-6e3340a5fed4)
@@ -72,15 +72,23 @@
 
 <p>HR personnel can: View employee details, Edit employee information, Delete employee and Manage leave days for employees</p>
 
+<p>Edit informations about employee functionality</p>
+
 ![Image](https://github.com/user-attachments/assets/79770c7e-926f-49ac-877d-2b5eca4d6239)
+
+<p>Delete employee functionality</p>
 
 ![Image](https://github.com/user-attachments/assets/7644e306-c002-420f-8162-9e21424469b5)
 
+<p>View employee's details functionality</p>
+
 ![Image](https://github.com/user-attachments/assets/43e56af1-ad3c-4d10-b343-10045a89fe91)
+
+<p>Manage days for employee functionality</p>
 
 ![Image](https://github.com/user-attachments/assets/14d6863b-895c-4fd8-b886-7552caab21ae)
 
-<p>HR added 4 annual days and 5 bonus days for this empoyee</p>
+<p>Example: HR has added 4 annual leave days and 5 bonus days for this employee.</p>
 
 ![Image](https://github.com/user-attachments/assets/009c103c-88ba-43b7-bd3b-9c8723adffb8)
 
