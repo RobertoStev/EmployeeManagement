@@ -106,7 +106,7 @@
 ![Image](https://github.com/user-attachments/assets/1a03f57d-69ae-46b3-b858-3d25d785fa61)
 
 <p>HR can view all sick requests created by employees in the <b>All Sick Requests</b> tab. HR can approve or decline a sick request. If approved, the row is colored light blue and the status changes to Approved. If declined, the row is colored light red and the status changes to Rejected.</p>
-<p>Employees can log in to their accounts to view their sick request statuses.</p>
+<p>Employees can log in to their accounts to view the statuses of their leave requests and sick requests.</p>
 
 ![Image](https://github.com/user-attachments/assets/a4878808-bcea-41fa-a632-ad2f5487b68a)
 
@@ -118,8 +118,7 @@
 
 ![Image](https://github.com/user-attachments/assets/9bbce640-b3a6-42ad-8715-7eda49204b7e)
 
-<p>HR can also delete employee from the system. When employee is deleted all the requests created by that employee that are Approved will stay in the system, but the requests that are Pending or Declined will be removed from the system.</p>
-<p>Let's say we delete the employee Sophia Bennett. Now let's check both the Leave Requests and Sick Requests tables to see what happened to her requests.</p>
+<p>HR can delete employees from the system. When an employee is deleted, all their approved leave and sick requests remain in the system, while any pending or declined requests are automatically removed. For example, if we delete employee Sophia Bennett, we can check both the leave requests and sick requests tables to verify that only her approved requests are preserved.</p>
 
 ![Image](https://github.com/user-attachments/assets/8d6c50bb-5d74-4b14-832c-6e259a4e48bf)
 
