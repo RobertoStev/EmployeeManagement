@@ -47,7 +47,7 @@
 
 ![Image](https://github.com/user-attachments/assets/ec1526e8-0a2a-43c1-83b8-23bb838367c1)
 
-<p>In addition to standard leave requests, employees can also submit sick leave requests in the <b>Sick Request</b> tab. To do so, they must:</p>
+<p>In addition to standard leave requests, employees can also submit one or many sick leave requests in the <b>Sick Request</b> tab. To do so, they must:</p>
 <ul>
   <li>Select a start date and end date (end date cannot be earlier than the start date).</li>
   <li>Provide a brief reason for the sick leave (e.g. "Flu recovery").</li>
