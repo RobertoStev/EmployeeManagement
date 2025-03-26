@@ -72,7 +72,7 @@
 
 <p>HR personnel can: View employee details, Edit employee information, Delete employee and Manage leave days for employees</p>
 
-<p>Edit informations about employee functionality</p>
+<p>Edit employee information functionality</p>
 
 ![Image](https://github.com/user-attachments/assets/79770c7e-926f-49ac-877d-2b5eca4d6239)
 
