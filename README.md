@@ -43,7 +43,7 @@
 
 ![Image](https://github.com/user-attachments/assets/da835275-9a83-4ec8-a5e0-34103f4a81f9)
 
-<p>Once a leave request is created, it will be added to the employee's <b>My Requests</b> tab with a Pending status, displaying all relevant details about the request.</p>
+<p>Once a leave request is created, it will be added to the employee's <b>My Requests</b> tab under the <b>Leave Requests</b> table with a Pending status, displaying all relevant details about the request.</p>
 
 ![Image](https://github.com/user-attachments/assets/ec1526e8-0a2a-43c1-83b8-23bb838367c1)
 
@@ -57,7 +57,7 @@
 
 ![Image](https://github.com/user-attachments/assets/c8d7281e-2b0a-454c-9704-324fb8734581)
 
-<p>Once a sick leave request is submitted, it will appear in the "My Requests" tab under the "Sick Leaves" table. The status of their request is Pending and there is View button where the employee can review his medical report attached for that sick request</p>
+<p>Once a sick leave request is submitted, it will appear in the <b>My Requests</b> tab under the <b>Sick Leaves</b> table. The status of their request is Pending and there is View button where the employee can review his medical report attached for that sick request</p>
 
 ![Image](https://github.com/user-attachments/assets/4209010b-388b-490a-804c-18870234d702)
 
