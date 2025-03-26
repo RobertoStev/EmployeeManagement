@@ -64,7 +64,7 @@
 <h2><b>HR's View</b></h2>
 
 <p>HR personnel have access to all standard employee features (including the <b>My Info</b> and <b>My Requests</b> tabs), along with additional administrative access to view all employees in the system and manage all leave and sick leave requests.</p>
-<p>In addition to standard employee access, HR personnel can view all registered employees in the <b>All Employees Info</b> section. This includes each employee’s profile picture, along with options to edit, delete, view details, and manage leave days for every employee in the system.</p>
+<p>In addition to standard employee access, HR personnel can view all registered employees in the <b>All Employees Info</b> tab. This includes each employee’s profile picture, along with options to edit, delete, view details, and manage leave days for every employee in the system.</p>
 
 ![Image](https://github.com/user-attachments/assets/c8dfa113-52a9-4397-a913-6e3340a5fed4)
 
@@ -92,20 +92,21 @@
 
 ![Image](https://github.com/user-attachments/assets/009c103c-88ba-43b7-bd3b-9c8723adffb8)
 
-<p>HR personnel can add new employees to the system in the <b>New Employee</b> section by entering the following details: First name, Last name, Department, Job title, Email, A valid profile image</p>
-<p>Once created, the new employee will appear in the <b>All Employees Info</b> section alongside all other registered employees.</p>
+<p>HR personnel can add new employees to the system in the <b>New Employee</b> tab by entering the following details: First name, Last name, Department, Job title, Email, A valid profile image</p>
+<p>Once created, the new employee will appear in the <b>All Employees Info</b> tab alongside all other registered employees.</p>
 
 ![Image](https://github.com/user-attachments/assets/80f51891-1051-47fd-b2b9-4087f85faf1c)
 
 ![Image](https://github.com/user-attachments/assets/1e6c955a-11cc-4363-81a0-5f5ed45926b4)
 
-<p>HR can also see all the leave requests created by the employees in the <b>All Leave Requests</b> section. HR can Approve or Decline a request. If the request is Approved the whole row is colored in light blue, conservly if the request is Declined the row is colored in light red. </p>
+<p>HR can view all leave requests in the <b>All Leave Requests</b> tab. HR can approve or decline a request. If approved, the system deducts the corresponding days (annual or bonus) from the employee’s balance based on the leave type used, the row highlights in light blue and the status for that request changes to Approved. If declined, no days are deducted, the row highlights in light red and the status for that request changes to Rejected.</p>
 
 ![Image](https://github.com/user-attachments/assets/83104fae-082a-4258-b585-8d5867c5fc93)
 
 ![Image](https://github.com/user-attachments/assets/1a03f57d-69ae-46b3-b858-3d25d785fa61)
 
-<p>HR can also see all the sick requests created by the employees in the <b>All Sick Requests</b> section. HR can Approve or Decline a sick request. If the sick request is Approved the whole row is colored in light blue, conversely if the sick request is Declined the row is colored in light red. The employees can log in into their account and see the status of their sick requests.</p>
+<p>HR can view all sick requests created by employees in the <b>All Sick Requests</b> tab. HR can approve or decline a sick request. If approved, the row is colored light blue and the status changes to Approved. If declined, the row is colored light red and the status changes to Rejected.</p>
+<p>Employees can log in to their accounts to view their sick request statuses.</p>
 
 ![Image](https://github.com/user-attachments/assets/a4878808-bcea-41fa-a632-ad2f5487b68a)
 
