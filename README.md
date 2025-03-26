@@ -8,7 +8,7 @@
   <li><b>HR:</b> Has full <b>CRUD (Create, Read, Update, Delete)</b> control over employees and can manage leave balances.</li>
 </ul>
 
-<p>Both Employees and HR users can request leave, while HR employees can adjust annual and bonus leave days for employees as needed.</p>
+<p>Both Employees and HR users can create leave and sick leave requests, while HR employees can adjust annual and bonus leave days for employees as needed.</p>
 
 <p>This is the landing page where unregistered or non-logged-in users are redirected when the application starts. It provides a brief overview of the system and its functionality.</p>
 
