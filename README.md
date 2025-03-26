@@ -12,16 +12,16 @@
 
 <p>This is the landing page where unregistered or non-logged-in users are redirected when the application starts. It provides a brief overview of the system and its functionality.</p>
 
-![Image](https://github.com/user-attachments/assets/a7dcf484-eb81-44ef-b508-7ba65f3cf67e)
+![Image](https://github.com/user-attachments/assets/5bb0340d-dd3f-4050-8248-3663e2ee2869)
 
 <h2><b>Employee's View</b></h2>
 <p>Now, let's consider a scenario where a new user wants to register in the system. Clicking the Register button opens a registration form. After entering a valid email and password, the user successfully registers but must wait for an HR employee to add them to the system.</p>
 
-![Image](https://github.com/user-attachments/assets/703d517f-4998-4b64-979f-5bef349fc801)
+![Image](https://github.com/user-attachments/assets/3f1cb13d-02d9-43d3-8a35-48d2f1746a64)
 
 <p>The <b>Employee Management</b> tab serves as the main dashboard of the application, providing an overview and key functionalities for managing employees.</p>
 
-![Image](https://github.com/user-attachments/assets/a250e387-dc21-485d-8bb7-2fcc8fd2deb5)
+![Image](https://github.com/user-attachments/assets/201b4ad8-2e6e-46e9-978d-c12157441fae)
 
 <p>Once added, the user can log in and access their account. In the <b>My Info</b> tab, users can view their personal details, including their full name, department, job title, email, remaining annual and bonus leave days, and their expiration dates. Every new employee starts with 21 annual leave days by default.</p>
 
