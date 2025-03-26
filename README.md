@@ -57,7 +57,7 @@
 
 ![Image](https://github.com/user-attachments/assets/c8d7281e-2b0a-454c-9704-324fb8734581)
 
-<p>Once a sick leave request is submitted, it will appear in the <b>My Requests</b> tab under the <b>Sick Leaves</b> table. The status of their request is Pending and there is View button where the employee can review his medical report attached for that sick request</p>
+<p>Once a sick leave request is submitted, it will appear in the <b>My Requests</b> tab under the <b>Sick Leaves</b> table. The status of their request is Pending and there is View button where the employee can review his medical report attached for that sick request.</p>
 
 ![Image](https://github.com/user-attachments/assets/4209010b-388b-490a-804c-18870234d702)
 
@@ -70,21 +70,21 @@
 
 ![Image](https://github.com/user-attachments/assets/a1e1a219-be86-49c0-818f-473254b121c1)
 
-<p>HR personnel can: View employee details, Edit employee information, Delete employee and Manage leave days for employees</p>
+<p>HR personnel can: View employee details, Edit employee information, Delete employee and Manage leave days for employees.</p>
 
-<p>Edit employee information functionality</p>
+<p>Edit employee information functionality.</p>
 
 ![Image](https://github.com/user-attachments/assets/79770c7e-926f-49ac-877d-2b5eca4d6239)
 
-<p>Delete employee functionality</p>
+<p>Delete employee functionality.</p>
 
 ![Image](https://github.com/user-attachments/assets/7644e306-c002-420f-8162-9e21424469b5)
 
-<p>View employee's details functionality</p>
+<p>View employee's details functionality.</p>
 
 ![Image](https://github.com/user-attachments/assets/43e56af1-ad3c-4d10-b343-10045a89fe91)
 
-<p>Manage days for employee functionality</p>
+<p>Manage days for employee functionality.</p>
 
 ![Image](https://github.com/user-attachments/assets/14d6863b-895c-4fd8-b886-7552caab21ae)
 
@@ -92,7 +92,7 @@
 
 ![Image](https://github.com/user-attachments/assets/009c103c-88ba-43b7-bd3b-9c8723adffb8)
 
-<p>HR personnel can add new employees to the system in the <b>New Employee</b> tab by entering the following details: First name, Last name, Department, Job title, Email, A valid profile image</p>
+<p>HR personnel can add new employees to the system in the <b>New Employee</b> tab by entering the following details: First name, Last name, Department, Job title, Email, A valid profile image.</p>
 <p>Once created, the new employee will appear in the <b>All Employees Info</b> tab alongside all other registered employees.</p>
 
 ![Image](https://github.com/user-attachments/assets/80f51891-1051-47fd-b2b9-4087f85faf1c)
@@ -106,13 +106,12 @@
 ![Image](https://github.com/user-attachments/assets/1a03f57d-69ae-46b3-b858-3d25d785fa61)
 
 <p>HR can view all sick requests created by employees in the <b>All Sick Requests</b> tab. HR can approve or decline a sick request. If approved, the row is colored light blue and the status changes to Approved. If declined, the row is colored light red and the status changes to Rejected.</p>
-<p>Employees can log in to their accounts to view the statuses of their leave requests and sick requests.</p>
 
 ![Image](https://github.com/user-attachments/assets/a4878808-bcea-41fa-a632-ad2f5487b68a)
 
 ![Image](https://github.com/user-attachments/assets/7cc2e3bb-826b-40f2-9c4f-82940a6ff5db)
 
-<p>They employees can log in into their account and see the status of their requests.</p>
+<p>Employees can log in to their accounts to view the statuses of their leave requests and sick requests.</p>
 
 ![Image](https://github.com/user-attachments/assets/f383cd91-a043-4a23-87cd-da7edc45a1f8)
 
