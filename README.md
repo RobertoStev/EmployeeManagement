@@ -55,70 +55,70 @@
 </ul>
 <p>If any required field is left blank, the system will display an error message, and the request will not be submitted.</p>
 
-![Image](https://github.com/user-attachments/assets/744d9c1a-e67d-4ae4-a03a-76d7c48529d1)
+![Image](https://github.com/user-attachments/assets/f0328217-c0e0-4755-85c4-ff9de7af01b0)
 
 <p>Once a sick leave request is submitted, it will appear in the <b>My Requests</b> tab under the <b>Sick Leaves</b> table. The status of their request is Pending and there is View button where the employee can review his medical report attached for that sick request.</p>
 
-![Image](https://github.com/user-attachments/assets/02c093e9-fad3-4ca3-94ef-5cade009db45)
+![Image](https://github.com/user-attachments/assets/c14748f4-f11a-48dc-adc0-339addffad9d)
 
 <h2><b>HR's View</b></h2>
 
 <p>HR personnel have access to all standard employee features (including the <b>My Info</b> and <b>My Requests</b> tabs), along with additional administrative access to view all employees in the system and manage all leave and sick leave requests.</p>
 <p>In addition to standard employee access, HR personnel can view all registered employees in the <b>All Employees Info</b> tab. This includes each employee’s profile picture, along with options to edit, delete, view details, and manage leave days for every employee in the system.</p>
 
-![Image](https://github.com/user-attachments/assets/c8dfa113-52a9-4397-a913-6e3340a5fed4)
+![Image](https://github.com/user-attachments/assets/df0d93fb-5e99-4072-83de-db0275639536)
 
-![Image](https://github.com/user-attachments/assets/a1e1a219-be86-49c0-818f-473254b121c1)
+![Image](https://github.com/user-attachments/assets/3c886d7a-3689-4e9e-8cfd-87e829ca58c3)
 
 <p>HR personnel can: View employee details, Edit employee information, Delete employee and Manage leave days for employees.</p>
 
 <p>Edit employee information functionality.</p>
 
-![Image](https://github.com/user-attachments/assets/79770c7e-926f-49ac-877d-2b5eca4d6239)
+![Image](https://github.com/user-attachments/assets/7183c379-1f48-434e-ab75-740da648b978)
 
 <p>Delete employee functionality.</p>
 
-![Image](https://github.com/user-attachments/assets/7644e306-c002-420f-8162-9e21424469b5)
+![Image](https://github.com/user-attachments/assets/cbbf2703-2516-45d4-8288-d5dfb386e990)
 
 <p>View employee's details functionality.</p>
 
-![Image](https://github.com/user-attachments/assets/43e56af1-ad3c-4d10-b343-10045a89fe91)
+![Image](https://github.com/user-attachments/assets/125e162e-efd3-4c7a-baca-85cbdaf3ecf6)
 
 <p>Manage days for employee functionality.</p>
 
-![Image](https://github.com/user-attachments/assets/14d6863b-895c-4fd8-b886-7552caab21ae)
+![Image](https://github.com/user-attachments/assets/aaf3b0df-ec21-4539-9800-c4edd3d33386)
 
 <p>Example: HR has added 4 annual leave days and 5 bonus days for this employee.</p>
 
-![Image](https://github.com/user-attachments/assets/009c103c-88ba-43b7-bd3b-9c8723adffb8)
+![Image](https://github.com/user-attachments/assets/d19b7606-2311-4441-b8d9-0b0976d2142e)
 
 <p>HR personnel can add new employees to the system in the <b>New Employee</b> tab by entering the following details: First name, Last name, Department, Job title, Email, A valid profile image.</p>
 <p>Once created, the new employee will appear in the <b>All Employees Info</b> tab alongside all other registered employees.</p>
 
-![Image](https://github.com/user-attachments/assets/80f51891-1051-47fd-b2b9-4087f85faf1c)
+![Image](https://github.com/user-attachments/assets/41bb546e-540c-43f3-8f8a-bb70fb010eed)
 
-![Image](https://github.com/user-attachments/assets/1e6c955a-11cc-4363-81a0-5f5ed45926b4)
+![Image](https://github.com/user-attachments/assets/5e56333a-ec54-49e4-88ac-061460b4295e)
 
 <p>HR can view all leave requests in the <b>All Leave Requests</b> tab. HR can approve or decline a request. If approved, the system deducts the corresponding days (annual or bonus) from the employee’s balance based on the leave type used, the row highlights in light blue and the status for that request changes to Approved. If declined, no days are deducted, the row highlights in light red and the status for that request changes to Rejected.</p>
 
-![Image](https://github.com/user-attachments/assets/83104fae-082a-4258-b585-8d5867c5fc93)
+![Image](https://github.com/user-attachments/assets/ec73fc77-75e4-44a2-b458-25434fac5f27)
 
-![Image](https://github.com/user-attachments/assets/1a03f57d-69ae-46b3-b858-3d25d785fa61)
+![Image](https://github.com/user-attachments/assets/de2da4ae-b4e5-49ae-a2d0-6940e38a56c7)
 
 <p>HR can view all sick requests created by employees in the <b>All Sick Requests</b> tab. HR can approve or decline a sick request. If approved, the row is colored light blue and the status changes to Approved. If declined, the row is colored light red and the status changes to Rejected.</p>
 
-![Image](https://github.com/user-attachments/assets/a4878808-bcea-41fa-a632-ad2f5487b68a)
+![Image](https://github.com/user-attachments/assets/6dacf425-2506-447e-8848-7641ccff822a)
 
-![Image](https://github.com/user-attachments/assets/7cc2e3bb-826b-40f2-9c4f-82940a6ff5db)
+![Image](https://github.com/user-attachments/assets/cde72e79-05c5-4ecc-a368-db3d2b111f92)
 
 <p>Employees can log in to their accounts to view the statuses of their leave requests and sick requests.</p>
 
-![Image](https://github.com/user-attachments/assets/f383cd91-a043-4a23-87cd-da7edc45a1f8)
+![Image](https://github.com/user-attachments/assets/48c2b5e7-7d46-49af-9330-7c53555c4f7d)
 
-![Image](https://github.com/user-attachments/assets/9bbce640-b3a6-42ad-8715-7eda49204b7e)
+![Image](https://github.com/user-attachments/assets/e4a261b0-5f88-4faa-9805-307563af83c5)
 
 <p>HR can delete employees from the system. When an employee is deleted, all their approved leave and sick requests remain in the system, while any pending or declined requests are automatically removed. For example, if we delete employee Sophia Bennett, we can check both the leave requests and sick requests tables to verify that only her approved requests are preserved.</p>
 
-![Image](https://github.com/user-attachments/assets/8d6c50bb-5d74-4b14-832c-6e259a4e48bf)
+![Image](https://github.com/user-attachments/assets/f7afd8aa-592d-4a11-8802-9c7fe95680f1)
 
-![Image](https://github.com/user-attachments/assets/f0b2919e-a23d-45aa-83d6-cc56e1f91d89)
+![Image](https://github.com/user-attachments/assets/f9f03fbd-637f-4e52-a7be-76f6dc7ec381)
